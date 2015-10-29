@@ -2,12 +2,12 @@ var app = require('../server');
 
 var user = require('../models/user');
 
-app.get('/Users', user.list);
+app.get('/User', user.list);
 
-app.put('/Users/', user.put);
+app.put('/User/', user.put);
 
-app.post('/Users', user.post);
+app.post('/User', user.post);
 
-app.get('/Users/:id', user.get);
+app.get('/User/:id', user.get);
 
-app.delete('/Users/:id', user.delete);
+app.delete('/User/:id', user.delete);
