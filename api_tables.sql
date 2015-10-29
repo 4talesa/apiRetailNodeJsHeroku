@@ -1,6 +1,6 @@
 ﻿SET timezone = 'America/Los_Angeles';
 
-create table api_user (_id integer, id text, name text, password text, profession text);
+create table api_user (_id integer, id text, name text, password text, profession text, postDate timestamp with time zone, putDate timestamp with time zone, deleteDate timestamp with time zone);
 
 CREATE SEQUENCE api_user_id_seq
     INCREMENT 1
@@ -11,7 +11,7 @@ CREATE SEQUENCE api_user_id_seq
 
 ALTER TABLE api_user ALTER COLUMN _id SET DEFAULT NEXTVAL('api_user_id_seq');
 
-create table store (_id integer, id text, name text, pictureUrl text, address text);
+create table store (_id integer, id text, name text, pictureUrl text, address text, postDate timestamp with time zone, putDate timestamp with time zone, deleteDate timestamp with time zone);
 
 CREATE SEQUENCE store_id_seq
     INCREMENT 1
@@ -22,7 +22,7 @@ CREATE SEQUENCE store_id_seq
 
 ALTER TABLE store ALTER COLUMN _id SET DEFAULT NEXTVAL('store_id_seq');
 
-create table product (_id integer, id text, name text, pictureUrl text, detail text);
+create table product (_id integer, id text, name text, pictureUrl text, detail text, postDate timestamp with time zone, putDate timestamp with time zone, deleteDate timestamp with time zone);
 
 CREATE SEQUENCE product_id_seq
     INCREMENT 1
@@ -33,7 +33,7 @@ CREATE SEQUENCE product_id_seq
 
 ALTER TABLE product ALTER COLUMN _id SET DEFAULT NEXTVAL('product_id_seq');
 
-create table category (_id integer, id text, name text, pictureUrl text, detail text);
+create table category (_id integer, id text, name text, pictureUrl text, detail text, postDate timestamp with time zone, putDate timestamp with time zone, deleteDate timestamp with time zone);
 
 CREATE SEQUENCE category_id_seq
     INCREMENT 1
@@ -44,7 +44,7 @@ CREATE SEQUENCE category_id_seq
 
 ALTER TABLE category ALTER COLUMN _id SET DEFAULT NEXTVAL('category_id_seq');
 
-create table productStore (_id integer, id text, idProduct text, idStore text);
+create table productStore (_id integer, id text, idProduct text, idStore text, postDate timestamp with time zone, putDate timestamp with time zone, deleteDate timestamp with time zone);
 
 CREATE SEQUENCE productStore_id_seq
     INCREMENT 1
@@ -55,7 +55,7 @@ CREATE SEQUENCE productStore_id_seq
 
 ALTER TABLE productStore ALTER COLUMN _id SET DEFAULT NEXTVAL('productStore_id_seq');
 
-create table productCategory (_id integer, id text, idProduct text, idCategory text);
+create table productCategory (_id integer, id text, idProduct text, idCategory text, postDate timestamp with time zone, putDate timestamp with time zone, deleteDate timestamp with time zone);
 
 CREATE SEQUENCE productCategory_id_seq
     INCREMENT 1
@@ -66,7 +66,7 @@ CREATE SEQUENCE productCategory_id_seq
 
 ALTER TABLE productStore ALTER COLUMN _id SET DEFAULT NEXTVAL('productCategory_id_seq');
 
-create table shoppingCart (_id integer, id text, idStore text, idUser text, status text, idPaymentMethod text);
+create table shoppingCart (_id integer, id text, idStore text, idUser text, status text, idPaymentMethod text, postDate timestamp with time zone, putDate timestamp with time zone, deleteDate timestamp with time zone);
 
 CREATE SEQUENCE shoppingCart_id_seq
     INCREMENT 1
@@ -77,7 +77,7 @@ CREATE SEQUENCE shoppingCart_id_seq
 
 ALTER TABLE shoppingCart ALTER COLUMN _id SET DEFAULT NEXTVAL('shoppingCart_id_seq');
 
-create table shoppingCartItem (_id integer, id text, idShoppingCart text, idProduct text, status text, amountRequested numeric, amountPurchased numeric);
+create table shoppingCartItem (_id integer, id text, idShoppingCart text, idProduct text, status text, amountRequested numeric, amountPurchased numeric, postDate timestamp with time zone, putDate timestamp with time zone, deleteDate timestamp with time zone);
 
 CREATE SEQUENCE shoppingCartItem_id_seq
     INCREMENT 1
@@ -88,7 +88,7 @@ CREATE SEQUENCE shoppingCartItem_id_seq
 
 ALTER TABLE shoppingCartItem ALTER COLUMN _id SET DEFAULT NEXTVAL('shoppingCartItem_id_seq');
 
-create table purchase (_id integer, id text, idStore text, idUser text, status text, idPaymentMethod text);
+create table purchase (_id integer, id text, idStore text, idUser text, status text, idPaymentMethod text, postDate timestamp with time zone, putDate timestamp with time zone, deleteDate timestamp with time zone);
 
 CREATE SEQUENCE purchase_id_seq
     INCREMENT 1
@@ -99,7 +99,7 @@ CREATE SEQUENCE purchase_id_seq
 
 ALTER TABLE purchase ALTER COLUMN _id SET DEFAULT NEXTVAL('purchase_id_seq');
 
-create table purchaseItem (_id integer, id text, idpurchase text, idProduct text, status text, amountRequested numeric, amountPurchased numeric);
+create table purchaseItem (_id integer, id text, idpurchase text, idProduct text, status text, amountRequested numeric, amountPurchased numeric, postDate timestamp with time zone, putDate timestamp with time zone, deleteDate timestamp with time zone);
 
 CREATE SEQUENCE purchaseItem_id_seq
     INCREMENT 1
@@ -110,7 +110,7 @@ CREATE SEQUENCE purchaseItem_id_seq
 
 ALTER TABLE purchaseItem ALTER COLUMN _id SET DEFAULT NEXTVAL('purchaseItem_id_seq');
 
-create table paymentMethod (_id integer, id text, name text, pictureUrl text, detail text);
+create table paymentMethod (_id integer, id text, name text, pictureUrl text, detail text, postDate timestamp with time zone, putDate timestamp with time zone, deleteDate timestamp with time zone);
 
 CREATE SEQUENCE paymentMethod_id_seq
     INCREMENT 1
@@ -120,6 +120,24 @@ CREATE SEQUENCE paymentMethod_id_seq
     CACHE 1;
 
 ALTER TABLE paymentMethod ALTER COLUMN _id SET DEFAULT NEXTVAL('paymentMethod_id_seq');
+
+ALTER TABLE api_user ADD postDate timestamp with time zone;ALTER TABLE api_user  ADD putDate timestamp with time zone;ALTER TABLE api_user  ADD deleteDate timestamp with time zone;
+ALTER TABLE store ADD postDate timestamp with time zone;ALTER TABLE store  ADD putDate timestamp with time zone;ALTER TABLE store  ADD deleteDate timestamp with time zone;
+ALTER TABLE product ADD postDate timestamp with time zone;ALTER TABLE product  ADD putDate timestamp with time zone;ALTER TABLE product  ADD deleteDate timestamp with time zone;
+ALTER TABLE productStore ADD postDate timestamp with time zone;ALTER TABLE productStore  ADD putDate timestamp with time zone;ALTER TABLE productStore  ADD deleteDate timestamp with time zone;
+ALTER TABLE category ADD postDate timestamp with time zone;ALTER TABLE category  ADD putDate timestamp with time zone;ALTER TABLE category  ADD deleteDate timestamp with time zone;
+ALTER TABLE productCategory ADD postDate timestamp with time zone;ALTER TABLE productCategory  ADD putDate timestamp with time zone;ALTER TABLE productCategory  ADD deleteDate timestamp with time zone;
+ALTER TABLE purchase ADD postDate timestamp with time zone;ALTER TABLE purchase  ADD putDate timestamp with time zone;ALTER TABLE purchase  ADD deleteDate timestamp with time zone;
+ALTER TABLE purchaseItem ADD postDate timestamp with time zone;ALTER TABLE purchaseItem  ADD putDate timestamp with time zone;ALTER TABLE purchaseItem  ADD deleteDate timestamp with time zone;
+ALTER TABLE paymentMethod ADD postDate timestamp with time zone;ALTER TABLE paymentMethod  ADD putDate timestamp with time zone;ALTER TABLE paymentMethod  ADD deleteDate timestamp with time zone;
+ALTER TABLE shoppingCart ADD postDate timestamp with time zone;ALTER TABLE shoppingCart  ADD putDate timestamp with time zone;ALTER TABLE shoppingCart  ADD deleteDate timestamp with time zone;
+ALTER TABLE shoppingCartItem ADD postDate timestamp with time zone;ALTER TABLE shoppingCartItem  ADD putDate timestamp with time zone;ALTER TABLE shoppingCartItem  ADD deleteDate timestamp with time zone;
+
+
+
+
+
+
 
 update category set name = 'category_'||_id, pictureUrl = 'pictureUrl_'||_id, detail = 'detail_'||_id;
 

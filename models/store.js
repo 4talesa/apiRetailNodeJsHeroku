@@ -28,7 +28,7 @@ exports.list = function (req, res, next) {
 exports.post = function (req, res, next) {
 	
 	pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-		client.query('insert into store (id, name, pictureUrl, address) values ($1,$2,$3,$4) RETURNING _id, id, name, pictureUrl, address',[req.body.id,req.body.name,req.body.pictureUrl,req.body.address], function(err, result) {
+		client.query('insert into store (id, name, pictureUrl, address, postDate, putDate, deleteDate) values ($1,$2,$3,$4,now(),null,null) RETURNING _id, id, name, pictureUrl, address, postDate, putDate, deleteDate',[req.body.id,req.body.name,req.body.pictureUrl,req.body.address], function(err, result) {
 			done();
 			if (err) {
 				console.error(err);
@@ -98,7 +98,7 @@ exports.put = function (req, res, next) {
 				response.send("Error " + err);
 			}else{
 				var userFound = result.rows;
-				client.query('update store set name=$2, pictureUrl=$3, address=$4 where id = $1',[req.body.id,req.body.name,req.body.pictureUrl,req.body.address], function(err, result) {
+				client.query('update store set name=$2, pictureUrl=$3, address=$4, postDate = coalesce(postDate,now()), putDate = now(), deleteDate = deleteDate where id = $1',[req.body.id,req.body.name,req.body.pictureUrl,req.body.address], function(err, result) {
 					done();
 					if (err) {
 						console.error(err);
