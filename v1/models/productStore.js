@@ -1,4 +1,4 @@
-var app = require('../server');
+var app = require('../../server');
 
 // import the language driver
 var pg = require('pg');

@@ -1,3 +1,3 @@
-cd C:\Users\rond.borges\Documents\web_baas\assets\mongodb
+cd C:\Users\rond.borges\Documents\heroku\apiPoCRetail\
 
 node server.js

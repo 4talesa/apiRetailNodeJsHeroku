@@ -15,8 +15,24 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
+app.get('/', function(req, res, next) {
+	var data = [];
+	
+	data = {'Error': 'Invalid version', 'Message': 'Version v1 is available, try use url + v1 + docs to get info'};
+	
+	res.writeHead(200, { 'Content-Type': 'application/json' });
+	res.write(JSON.stringify(data));
+	res.end();
+});
+
 // Routes
-require('./routes/index');
+require('./v1/routes/index');
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");

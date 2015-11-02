@@ -1,4 +1,4 @@
-var app = require('../server');
+var app = require('../../server');
 
 // import the language driver
 var pg = require('pg');
@@ -10,7 +10,7 @@ var bodyParser = require('body-parser');
 exports.list = function (req, res, next) {
 	
 	pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-		client.query('SELECT * FROM category', function(err, result) {
+		client.query('SELECT * FROM purchaseItem', function(err, result) {
 			done();
 			if (err) {
 				console.error(err);
@@ -28,7 +28,7 @@ exports.list = function (req, res, next) {
 exports.post = function (req, res, next) {
 	
 	pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-		client.query('insert into category (id, name, pictureUrl, detail, postDate, putDate, deleteDate) values ($1,$2,$3,$4,now(),null,null) RETURNING _id, id, name, pictureUrl, detail, postDate, putDate, deleteDate',[req.body.id,req.body.name,req.body.pictureUrl,req.body.detail], function(err, result) {
+		client.query('insert into purchaseItem (id, idShoppingCart, idProduct, status, amountRequested, amountPurchased, postDate, putDate, deleteDate) values ($1,$2,$3,$4,$5,$6,now(),null,null) RETURNING _id, id, idShoppingCart, idProduct, status, amountRequested, amountPurchased, postDate, putDate, deleteDate',[req.body.id,req.body.idShoppingCart,req.body.idProduct,req.body.status,req.body.amountRequested,req.body.amountPurchased], function(err, result) {
 			done();
 			if (err) {
 				console.error(err);
@@ -46,7 +46,7 @@ exports.post = function (req, res, next) {
 exports.get = function (req, res, next) {
 	
 	pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-		client.query('SELECT * FROM category where id = $1',[req.params.id], function(err, result) {
+		client.query('SELECT * FROM purchaseItem where id = $1',[req.params.id], function(err, result) {
 			done();
 			if (err) {
 				console.error(err);
@@ -64,14 +64,14 @@ exports.get = function (req, res, next) {
 exports.delete = function (req, res, next) {
 
 	pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-		client.query('SELECT * FROM category where id = $1',[req.params.id], function(err, result) {
+		client.query('SELECT * FROM purchaseItem where id = $1',[req.params.id], function(err, result) {
 			done();
 			if (err) {
 				console.error(err);
 				response.send("Error " + err);
 			}else{
 				var userFound = result.rows;
-				client.query('delete FROM category where id = $1',[req.params.id], function(err, result) {
+				client.query('delete FROM purchaseItem where id = $1',[req.params.id], function(err, result) {
 					done();
 					if (err) {
 						console.error(err);
@@ -91,14 +91,14 @@ exports.delete = function (req, res, next) {
 exports.put = function (req, res, next) {
 
    pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-		client.query('SELECT * FROM category where id = $1',[req.body.id], function(err, result) {
+		client.query('SELECT * FROM purchaseItem where id = $1',[req.body.id], function(err, result) {
 			done();
 			if (err) {
 				console.error(err);
 				response.send("Error " + err);
 			}else{
 				var userFound = result.rows;
-				client.query('update category set name=$2, pictureUrl=$3, detail=$4, postDate = coalesce(postDate,now()), putDate = now(), deleteDate = deleteDate where id = $1',[req.body.id,req.body.name,req.body.pictureUrl,req.body.detail], function(err, result) {
+				client.query('update purchaseItem set idShoppingCart=$2, idProduct=$3, status=$4, amountRequested=$5, amountPurchased=$6, postDate = coalesce(postDate,now()), putDate = now(), deleteDate = deleteDate where id = $1',[req.body.id,req.body.idShoppingCart,req.body.idProduct,req.body.status,req.body.amountRequested,req.body.amountPurchased], function(err, result) {
 					done();
 					if (err) {
 						console.error(err);

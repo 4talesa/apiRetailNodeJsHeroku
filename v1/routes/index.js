@@ -1,4 +1,8 @@
-var app = require('../server');
+var app = require('../../server');
+var fs = require("fs");
+
+var version = '/v1';
+exports.version = version;
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -6,15 +10,35 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.get('/', function(req, res, next) {
+app.get(version+'/docs', function(req, res, next) {
+
+	var data = [];
 	
-	var operations = [];
-	operations[0] = { 'operation': '/' , 'result': 'api PoC Retail' };
+	data = {'Error': 'Swagger not configured', 'Message': 'Please configure the swagger here'};
 	
 	res.writeHead(200, { 'Content-Type': 'application/json' });
-	res.write(JSON.stringify(operations));
+	res.write(JSON.stringify(data));
 	res.end();
-	
+});
+
+app.get(version+'/swagger.json', function(req, res, next) {
+
+	var file = __dirname + '/../../' + version + '/doc/swagger.json';
+
+	fs.readFile(file, 'utf8', function (err, data) {
+		if (err) {
+			console.log('Error: ' + err);
+			return;
+		}
+
+		data = JSON.parse(data);
+
+		console.dir(data);
+		
+		res.writeHead(200, { 'Content-Type': 'application/json' });
+		res.write(JSON.stringify(data));
+		res.end();
+	});
 });
 
 // Routes to models

@@ -1,0 +1,1469 @@
+swagger: '2.0'
+info:
+  title: Node.js + Express + PostGres
+  description: Exposing PoC Retail API
+  version: 1.0.0
+host: protected-bayou-8222.herokuapp.com
+schemes:
+  - https
+basePath: /v1
+produces:
+  - application/json
+paths:
+  /User:
+    get:
+      summary: User List
+      description: The List of Users of our system.
+      tags:
+        - Users
+      responses:
+        '200':
+          description: An array of users
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/User'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      summary: Insert User
+      description: Insert a new User.
+      parameters:
+          - name: user
+            in: body
+            schema:
+              $ref: '#/definitions/User'
+            description: Unique customer identifier to be used for experience customization.
+      tags:
+        - Users
+      responses:
+        '200':
+          description: User posted
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/User'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    put:
+      summary: Update User by id
+      description: Update a unique user by id.
+      parameters:
+          - name: user
+            in: body
+            schema:
+              $ref: '#/definitions/User'
+            description: Unique customer identifier to be used for experience customization.
+      tags:
+        - Users
+      responses:
+        '200':
+          description: An array of users updated
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/User'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'            
+  /User/{id}:
+    parameters:
+      - name: id
+        in: path
+        type: string
+        required: true
+        description: Unique customer identifier to be used for experience customization.
+    get:
+      summary: Get User by id
+      description: Return a unique user by id.
+      tags:
+        - Users
+      responses:
+        '200':
+          description: An array of users found
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/User'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    delete:
+      summary: Delete User by id
+      description: Delete a unique user by id.
+      tags:
+        - Users
+      responses:
+        '200':
+          description: An array of users
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/User'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /Store:
+    get:
+      summary: Store List
+      description: The List of Stores of our system.
+      tags:
+        - Stores
+      responses:
+        '200':
+          description: An array of Stores
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Store'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      summary: Insert Store
+      description: Insert a new Store.
+      parameters:
+          - name: Store
+            in: body
+            schema:
+              $ref: '#/definitions/Store'
+            description: Unique customer identifier to be used for experience customization.
+      tags:
+        - Stores
+      responses:
+        '200':
+          description: Store posted
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Store'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    put:
+      summary: Update Store by id
+      description: Update a unique Store by id.
+      parameters:
+          - name: Store
+            in: body
+            schema:
+              $ref: '#/definitions/Store'
+            description: Unique customer identifier to be used for experience customization.
+      tags:
+        - Stores
+      responses:
+        '200':
+          description: An array of Stores updated
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Store'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'            
+  /Store/{id}:
+    parameters:
+      - name: id
+        in: path
+        type: string
+        required: true
+        description: Unique customer identifier to be used for experience customization.
+    get:
+      summary: Get Store by id
+      description: Return a unique Store by id.
+      tags:
+        - Stores
+      responses:
+        '200':
+          description: An array of Stores found
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Store'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    delete:
+      summary: Delete Store by id
+      description: Delete a unique Store by id.
+      tags:
+        - Stores
+      responses:
+        '200':
+          description: An array of Stores
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Store'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /Product:
+    get:
+      summary: Product List
+      description: The List of Products of our system.
+      tags:
+        - Products
+      responses:
+        '200':
+          description: An array of Products
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Product'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      summary: Insert Product
+      description: Insert a new Product.
+      parameters:
+          - name: Product
+            in: body
+            schema:
+              $ref: '#/definitions/Product'
+            description: Unique customer identifier to be used for experience customization.
+      tags:
+        - Products
+      responses:
+        '200':
+          description: Product posted
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Product'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    put:
+      summary: Update Product by id
+      description: Update a unique Product by id.
+      parameters:
+          - name: Product
+            in: body
+            schema:
+              $ref: '#/definitions/Product'
+            description: Unique customer identifier to be used for experience customization.
+      tags:
+        - Products
+      responses:
+        '200':
+          description: An array of Products updated
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Product'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'            
+  /Product/{id}:
+    parameters:
+      - name: id
+        in: path
+        type: string
+        required: true
+        description: Unique customer identifier to be used for experience customization.
+    get:
+      summary: Get Product by id
+      description: Return a unique Product by id.
+      tags:
+        - Products
+      responses:
+        '200':
+          description: An array of Products found
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Product'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    delete:
+      summary: Delete Product by id
+      description: Delete a unique Product by id.
+      tags:
+        - Products
+      responses:
+        '200':
+          description: An array of Products
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Product'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /Category:
+    get:
+      summary: Category List
+      description: The List of Categorys of our system.
+      tags:
+        - Categorys
+      responses:
+        '200':
+          description: An array of Categorys
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Category'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      summary: Insert Category
+      description: Insert a new Category.
+      parameters:
+          - name: Category
+            in: body
+            schema:
+              $ref: '#/definitions/Category'
+            description: Unique customer identifier to be used for experience customization.
+      tags:
+        - Categorys
+      responses:
+        '200':
+          description: Category posted
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Category'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    put:
+      summary: Update Category by id
+      description: Update a unique Category by id.
+      parameters:
+          - name: Category
+            in: body
+            schema:
+              $ref: '#/definitions/Category'
+            description: Unique customer identifier to be used for experience customization.
+      tags:
+        - Categorys
+      responses:
+        '200':
+          description: An array of Categorys updated
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Category'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'            
+  /Category/{id}:
+    parameters:
+      - name: id
+        in: path
+        type: string
+        required: true
+        description: Unique customer identifier to be used for experience customization.
+    get:
+      summary: Get Category by id
+      description: Return a unique Category by id.
+      tags:
+        - Categorys
+      responses:
+        '200':
+          description: An array of Categorys found
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Category'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    delete:
+      summary: Delete Category by id
+      description: Delete a unique Category by id.
+      tags:
+        - Categorys
+      responses:
+        '200':
+          description: An array of Categorys
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Category'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /ProductStore:
+    get:
+      summary: ProductStore List
+      description: The List of ProductStores of our system.
+      tags:
+        - ProductStores
+      responses:
+        '200':
+          description: An array of ProductStores
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ProductStore'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      summary: Insert ProductStore
+      description: Insert a new ProductStore.
+      parameters:
+          - name: ProductStore
+            in: body
+            schema:
+              $ref: '#/definitions/ProductStore'
+            description: Unique customer identifier to be used for experience customization.
+      tags:
+        - ProductStores
+      responses:
+        '200':
+          description: ProductStore posted
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ProductStore'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    put:
+      summary: Update ProductStore by id
+      description: Update a unique ProductStore by id.
+      parameters:
+          - name: ProductStore
+            in: body
+            schema:
+              $ref: '#/definitions/ProductStore'
+            description: Unique customer identifier to be used for experience customization.
+      tags:
+        - ProductStores
+      responses:
+        '200':
+          description: An array of ProductStores updated
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ProductStore'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'            
+  /ProductStore/{id}:
+    parameters:
+      - name: id
+        in: path
+        type: string
+        required: true
+        description: Unique customer identifier to be used for experience customization.
+    get:
+      summary: Get ProductStore by id
+      description: Return a unique ProductStore by id.
+      tags:
+        - ProductStores
+      responses:
+        '200':
+          description: An array of ProductStores found
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ProductStore'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    delete:
+      summary: Delete ProductStore by id
+      description: Delete a unique ProductStore by id.
+      tags:
+        - ProductStores
+      responses:
+        '200':
+          description: An array of ProductStores
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ProductStore'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /ProductCategory:
+    get:
+      summary: ProductCategory List
+      description: The List of ProductCategorys of our system.
+      tags:
+        - ProductCategorys
+      responses:
+        '200':
+          description: An array of ProductCategorys
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ProductCategory'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      summary: Insert ProductCategory
+      description: Insert a new ProductCategory.
+      parameters:
+          - name: ProductCategory
+            in: body
+            schema:
+              $ref: '#/definitions/ProductCategory'
+            description: Unique customer identifier to be used for experience customization.
+      tags:
+        - ProductCategorys
+      responses:
+        '200':
+          description: ProductCategory posted
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ProductCategory'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    put:
+      summary: Update ProductCategory by id
+      description: Update a unique ProductCategory by id.
+      parameters:
+          - name: ProductCategory
+            in: body
+            schema:
+              $ref: '#/definitions/ProductCategory'
+            description: Unique customer identifier to be used for experience customization.
+      tags:
+        - ProductCategorys
+      responses:
+        '200':
+          description: An array of ProductCategorys updated
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ProductCategory'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'            
+  /ProductCategory/{id}:
+    parameters:
+      - name: id
+        in: path
+        type: string
+        required: true
+        description: Unique customer identifier to be used for experience customization.
+    get:
+      summary: Get ProductCategory by id
+      description: Return a unique ProductCategory by id.
+      tags:
+        - ProductCategorys
+      responses:
+        '200':
+          description: An array of ProductCategorys found
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ProductCategory'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    delete:
+      summary: Delete ProductCategory by id
+      description: Delete a unique ProductCategory by id.
+      tags:
+        - ProductCategorys
+      responses:
+        '200':
+          description: An array of ProductCategorys
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ProductCategory'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /ShoppingCart:
+    get:
+      summary: ShoppingCart List
+      description: The List of ShoppingCarts of our system.
+      tags:
+        - ShoppingCarts
+      responses:
+        '200':
+          description: An array of ShoppingCarts
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ShoppingCart'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      summary: Insert ShoppingCart
+      description: Insert a new ShoppingCart.
+      parameters:
+          - name: ShoppingCart
+            in: body
+            schema:
+              $ref: '#/definitions/ShoppingCart'
+            description: Unique customer identifier to be used for experience customization.
+      tags:
+        - ShoppingCarts
+      responses:
+        '200':
+          description: ShoppingCart posted
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ShoppingCart'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    put:
+      summary: Update ShoppingCart by id
+      description: Update a unique ShoppingCart by id.
+      parameters:
+          - name: ShoppingCart
+            in: body
+            schema:
+              $ref: '#/definitions/ShoppingCart'
+            description: Unique customer identifier to be used for experience customization.
+      tags:
+        - ShoppingCarts
+      responses:
+        '200':
+          description: An array of ShoppingCarts updated
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ShoppingCart'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'            
+  /ShoppingCart/{id}:
+    parameters:
+      - name: id
+        in: path
+        type: string
+        required: true
+        description: Unique customer identifier to be used for experience customization.
+    get:
+      summary: Get ShoppingCart by id
+      description: Return a unique ShoppingCart by id.
+      tags:
+        - ShoppingCarts
+      responses:
+        '200':
+          description: An array of ShoppingCarts found
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ShoppingCart'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    delete:
+      summary: Delete ShoppingCart by id
+      description: Delete a unique ShoppingCart by id.
+      tags:
+        - ShoppingCarts
+      responses:
+        '200':
+          description: An array of ShoppingCarts
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ShoppingCart'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /ShoppingCartItem:
+    get:
+      summary: ShoppingCartItem List
+      description: The List of ShoppingCartItems of our system.
+      tags:
+        - ShoppingCartItems
+      responses:
+        '200':
+          description: An array of ShoppingCartItems
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ShoppingCartItem'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      summary: Insert ShoppingCartItem
+      description: Insert a new ShoppingCartItem.
+      parameters:
+          - name: ShoppingCartItem
+            in: body
+            schema:
+              $ref: '#/definitions/ShoppingCartItem'
+            description: Unique customer identifier to be used for experience customization.
+      tags:
+        - ShoppingCartItems
+      responses:
+        '200':
+          description: ShoppingCartItem posted
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ShoppingCartItem'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    put:
+      summary: Update ShoppingCartItem by id
+      description: Update a unique ShoppingCartItem by id.
+      parameters:
+          - name: ShoppingCartItem
+            in: body
+            schema:
+              $ref: '#/definitions/ShoppingCartItem'
+            description: Unique customer identifier to be used for experience customization.
+      tags:
+        - ShoppingCartItems
+      responses:
+        '200':
+          description: An array of ShoppingCartItems updated
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ShoppingCartItem'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'            
+  /ShoppingCartItem/{id}:
+    parameters:
+      - name: id
+        in: path
+        type: string
+        required: true
+        description: Unique customer identifier to be used for experience customization.
+    get:
+      summary: Get ShoppingCartItem by id
+      description: Return a unique ShoppingCartItem by id.
+      tags:
+        - ShoppingCartItems
+      responses:
+        '200':
+          description: An array of ShoppingCartItems found
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ShoppingCartItem'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    delete:
+      summary: Delete ShoppingCartItem by id
+      description: Delete a unique ShoppingCartItem by id.
+      tags:
+        - ShoppingCartItems
+      responses:
+        '200':
+          description: An array of ShoppingCartItems
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ShoppingCartItem'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /Purchase:
+    get:
+      summary: Purchase List
+      description: The List of Purchases of our system.
+      tags:
+        - Purchases
+      responses:
+        '200':
+          description: An array of Purchases
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Purchase'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      summary: Insert Purchase
+      description: Insert a new Purchase.
+      parameters:
+          - name: Purchase
+            in: body
+            schema:
+              $ref: '#/definitions/Purchase'
+            description: Unique customer identifier to be used for experience customization.
+      tags:
+        - Purchases
+      responses:
+        '200':
+          description: Purchase posted
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Purchase'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    put:
+      summary: Update Purchase by id
+      description: Update a unique Purchase by id.
+      parameters:
+          - name: Purchase
+            in: body
+            schema:
+              $ref: '#/definitions/Purchase'
+            description: Unique customer identifier to be used for experience customization.
+      tags:
+        - Purchases
+      responses:
+        '200':
+          description: An array of Purchases updated
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Purchase'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'            
+  /Purchase/{id}:
+    parameters:
+      - name: id
+        in: path
+        type: string
+        required: true
+        description: Unique customer identifier to be used for experience customization.
+    get:
+      summary: Get Purchase by id
+      description: Return a unique Purchase by id.
+      tags:
+        - Purchases
+      responses:
+        '200':
+          description: An array of Purchases found
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Purchase'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    delete:
+      summary: Delete Purchase by id
+      description: Delete a unique Purchase by id.
+      tags:
+        - Purchases
+      responses:
+        '200':
+          description: An array of Purchases
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Purchase'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /PurchaseItem:
+    get:
+      summary: PurchaseItem List
+      description: The List of PurchaseItems of our system.
+      tags:
+        - PurchaseItems
+      responses:
+        '200':
+          description: An array of PurchaseItems
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/PurchaseItem'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      summary: Insert PurchaseItem
+      description: Insert a new PurchaseItem.
+      parameters:
+          - name: PurchaseItem
+            in: body
+            schema:
+              $ref: '#/definitions/PurchaseItem'
+            description: Unique customer identifier to be used for experience customization.
+      tags:
+        - PurchaseItems
+      responses:
+        '200':
+          description: PurchaseItem posted
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/PurchaseItem'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    put:
+      summary: Update PurchaseItem by id
+      description: Update a unique PurchaseItem by id.
+      parameters:
+          - name: PurchaseItem
+            in: body
+            schema:
+              $ref: '#/definitions/PurchaseItem'
+            description: Unique customer identifier to be used for experience customization.
+      tags:
+        - PurchaseItems
+      responses:
+        '200':
+          description: An array of PurchaseItems updated
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/PurchaseItem'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'            
+  /PurchaseItem/{id}:
+    parameters:
+      - name: id
+        in: path
+        type: string
+        required: true
+        description: Unique customer identifier to be used for experience customization.
+    get:
+      summary: Get PurchaseItem by id
+      description: Return a unique PurchaseItem by id.
+      tags:
+        - PurchaseItems
+      responses:
+        '200':
+          description: An array of PurchaseItems found
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/PurchaseItem'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    delete:
+      summary: Delete PurchaseItem by id
+      description: Delete a unique PurchaseItem by id.
+      tags:
+        - PurchaseItems
+      responses:
+        '200':
+          description: An array of PurchaseItems
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/PurchaseItem'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /PaymentMethod:
+    get:
+      summary: PaymentMethod List
+      description: The List of PaymentMethods of our system.
+      tags:
+        - PaymentMethods
+      responses:
+        '200':
+          description: An array of PaymentMethods
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/PaymentMethod'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      summary: Insert PaymentMethod
+      description: Insert a new PaymentMethod.
+      parameters:
+          - name: PaymentMethod
+            in: body
+            schema:
+              $ref: '#/definitions/PaymentMethod'
+            description: Unique customer identifier to be used for experience customization.
+      tags:
+        - PaymentMethods
+      responses:
+        '200':
+          description: PaymentMethod posted
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/PaymentMethod'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    put:
+      summary: Update PaymentMethod by id
+      description: Update a unique PaymentMethod by id.
+      parameters:
+          - name: PaymentMethod
+            in: body
+            schema:
+              $ref: '#/definitions/PaymentMethod'
+            description: Unique customer identifier to be used for experience customization.
+      tags:
+        - PaymentMethods
+      responses:
+        '200':
+          description: An array of PaymentMethods updated
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/PaymentMethod'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'            
+  /PaymentMethod/{id}:
+    parameters:
+      - name: id
+        in: path
+        type: string
+        required: true
+        description: Unique customer identifier to be used for experience customization.
+    get:
+      summary: Get PaymentMethod by id
+      description: Return a unique PaymentMethod by id.
+      tags:
+        - PaymentMethods
+      responses:
+        '200':
+          description: An array of PaymentMethods found
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/PaymentMethod'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    delete:
+      summary: Delete PaymentMethod by id
+      description: Delete a unique PaymentMethod by id.
+      tags:
+        - PaymentMethods
+      responses:
+        '200':
+          description: An array of PaymentMethods
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/PaymentMethod'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+definitions:
+  User:
+    type: object
+    properties:
+      _id:
+        type: string
+        description: Generated id
+      id:
+        type: string
+        description: Given id
+      name:
+        type: string
+        description: Name
+      password:
+        type: string
+        description: Password
+      profession:
+        type: string
+        description: Profession
+      postDate:
+        type: string
+        format: date-time
+        description: Post date
+      putDate:
+        type: string
+        format: date-time
+        description: Put date
+      deleteDate:
+        type: string
+        format: date-time
+        description: Delete date
+  Store:
+    type: object
+    properties:
+      _id:
+        type: string
+        description: Generated id
+      id:
+        type: string
+        description: Given id
+      name:
+        type: string
+        description: Name
+      pictureUrl:
+        type: string
+        description: Picture url
+      address:
+        type: string
+        description: Address
+      postDate:
+        type: string
+        format: date-time
+        description: Post date
+      putDate:
+        type: string
+        format: date-time
+        description: Put date
+      deleteDate:
+        type: string
+        format: date-time
+        description: Delete date
+  Product:
+    type: object
+    properties:
+      _id:
+        type: string
+        description: Generated id
+      id:
+        type: string
+        description: Given id
+      name:
+        type: string
+        description: Name
+      pictureUrl:
+        type: string
+        description: Picture url
+      detail:
+        type: string
+        description: Detail
+      postDate:
+        type: string
+        format: date-time
+        description: Post date
+      putDate:
+        type: string
+        format: date-time
+        description: Put date
+      deleteDate:
+        type: string
+        format: date-time
+        description: Delete date
+  Category:
+    type: object
+    properties:
+      _id:
+        type: string
+        description: Generated id
+      id:
+        type: string
+        description: Given id
+      name:
+        type: string
+        description: Name
+      pictureUrl:
+        type: string
+        description: Picture url
+      detail:
+        type: string
+        description: Detail
+      postDate:
+        type: string
+        format: date-time
+        description: Post date
+      putDate:
+        type: string
+        format: date-time
+        description: Put date
+      deleteDate:
+        type: string
+        format: date-time
+        description: Delete date
+  ProductStore:
+    type: object
+    properties:
+      _id:
+        type: string
+        description: Generated id
+      id:
+        type: string
+        description: Given id
+      idProduct:
+        type: string
+        description: Product
+      idStore:
+        type: string
+        description: Store
+      postDate:
+        type: string
+        format: date-time
+        description: Post date
+      putDate:
+        type: string
+        format: date-time
+        description: Put date
+      deleteDate:
+        type: string
+        format: date-time
+        description: Delete date
+  ProductCategory:
+    type: object
+    properties:
+      _id:
+        type: string
+        description: Generated id
+      id:
+        type: string
+        description: Given id
+      idProduct:
+        type: string
+        description: Product
+      idCategory:
+        type: string
+        description: Category
+      postDate:
+        type: string
+        format: date-time
+        description: Post date
+      putDate:
+        type: string
+        format: date-time
+        description: Put date
+      deleteDate:
+        type: string
+        format: date-time
+        description: Delete date
+  ShoppingCart:
+    type: object
+    properties:
+      _id:
+        type: string
+        description: Generated id
+      id:
+        type: string
+        description: Given id
+      idStore:
+        type: string
+        description: Store
+      idUser:
+        type: string
+        description: User
+      status:
+        type: string
+        description: Status
+      idPaymentMethod:
+        type: string
+        description: Payment Method
+      postDate:
+        type: string
+        format: date-time
+        description: Post date
+      putDate:
+        type: string
+        format: date-time
+        description: Put date
+      deleteDate:
+        type: string
+        format: date-time
+        description: Delete date
+  ShoppingCartItem:
+    type: object
+    properties:
+      _id:
+        type: string
+        description: Generated id
+      id:
+        type: string
+        description: Given id
+      idShoppingCart:
+        type: string
+        description: Shopping Cart
+      idProduct:
+        type: string
+        description: Product
+      status:
+        type: string
+        description: Status
+      amountRequested:
+        type: number
+        format: double
+        description: Requested
+      amountPurchased:
+        type: number
+        format: double
+        description: Purchased
+      postDate:
+        type: string
+        format: date-time
+        description: Post date
+      putDate:
+        type: string
+        format: date-time
+        description: Put date
+      deleteDate:
+        type: string
+        format: date-time
+        description: Delete date
+  Purchase:
+    type: object
+    properties:
+      _id:
+        type: string
+        description: Generated id
+      id:
+        type: string
+        description: Given id
+      idStore:
+        type: string
+        description: Store
+      idUser:
+        type: string
+        description: User
+      status:
+        type: string
+        description: Status
+      idPaymentMethod:
+        type: string
+        description: Payment Method
+      postDate:
+        type: string
+        format: date-time
+        description: Post date
+      putDate:
+        type: string
+        format: date-time
+        description: Put date
+      deleteDate:
+        type: string
+        format: date-time
+        description: Delete date
+  PurchaseItem:
+    type: object
+    properties:
+      _id:
+        type: string
+        description: Generated id
+      id:
+        type: string
+        description: Given id
+      idPurchase:
+        type: string
+        description: Purchase
+      idProduct:
+        type: string
+        description: Product
+      status:
+        type: string
+        description: Status
+      amountRequested:
+        type: number
+        format: double
+        description: Requested
+      amountPurchased:
+        type: number
+        format: double
+        description: Purchased
+      postDate:
+        type: string
+        format: date-time
+        description: Post date
+      putDate:
+        type: string
+        format: date-time
+        description: Put date
+      deleteDate:
+        type: string
+        format: date-time
+        description: Delete date
+  PaymentMethod:
+    type: object
+    properties:
+      _id:
+        type: string
+        description: Generated id
+      id:
+        type: string
+        description: Given id
+      name:
+        type: string
+        description: PaymentMethod
+      pictureUrl:
+        type: string
+        description: Status
+      detail:
+        type: string
+        description: Detail
+      postDate:
+        type: string
+        format: date-time
+        description: Post date
+      putDate:
+        type: string
+        format: date-time
+        description: Put date
+      deleteDate:
+        type: string
+        format: date-time
+        description: Delete date
+  Error:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
+      fields:
+        type: string

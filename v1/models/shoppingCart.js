@@ -1,4 +1,4 @@
-var app = require('../server');
+var app = require('../../server');
 
 // import the language driver
 var pg = require('pg');
@@ -10,7 +10,7 @@ var bodyParser = require('body-parser');
 exports.list = function (req, res, next) {
 	
 	pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-		client.query('SELECT * FROM paymentMethod', function(err, result) {
+		client.query('SELECT * FROM shoppingCart', function(err, result) {
 			done();
 			if (err) {
 				console.error(err);
@@ -28,7 +28,7 @@ exports.list = function (req, res, next) {
 exports.post = function (req, res, next) {
 	
 	pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-		client.query('insert into paymentMethod (id, name, pictureUrl, detail, postDate, putDate, deleteDate) values ($1,$2,$3,$4,now(),null,null) RETURNING _id, id, name, pictureUrl, detail, postDate, putDate, deleteDate',[req.body.id,req.body.name,req.body.pictureUrl,req.body.detail], function(err, result) {
+		client.query('insert into shoppingCart (id, idStore, idUser, status, idPaymentMethod, postDate, putDate, deleteDate) values ($1,$2,$3,$4,$5,now(),null,null) RETURNING _id, id, idStore, idUser, status, idPaymentMethod, postDate, putDate, deleteDate',[req.body.id,req.body.idStore,req.body.idUser,req.body.status,req.body.idPaymentMethod], function(err, result) {
 			done();
 			if (err) {
 				console.error(err);
@@ -46,7 +46,7 @@ exports.post = function (req, res, next) {
 exports.get = function (req, res, next) {
 	
 	pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-		client.query('SELECT * FROM paymentMethod where id = $1',[req.params.id], function(err, result) {
+		client.query('SELECT * FROM shoppingCart where id = $1',[req.params.id], function(err, result) {
 			done();
 			if (err) {
 				console.error(err);
@@ -64,14 +64,14 @@ exports.get = function (req, res, next) {
 exports.delete = function (req, res, next) {
 
 	pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-		client.query('SELECT * FROM paymentMethod where id = $1',[req.params.id], function(err, result) {
+		client.query('SELECT * FROM shoppingCart where id = $1',[req.params.id], function(err, result) {
 			done();
 			if (err) {
 				console.error(err);
 				response.send("Error " + err);
 			}else{
 				var userFound = result.rows;
-				client.query('delete FROM paymentMethod where id = $1',[req.params.id], function(err, result) {
+				client.query('delete FROM shoppingCart where id = $1',[req.params.id], function(err, result) {
 					done();
 					if (err) {
 						console.error(err);
@@ -91,14 +91,14 @@ exports.delete = function (req, res, next) {
 exports.put = function (req, res, next) {
 
    pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-		client.query('SELECT * FROM paymentMethod where id = $1',[req.body.id], function(err, result) {
+		client.query('SELECT * FROM shoppingCart where id = $1',[req.body.id], function(err, result) {
 			done();
 			if (err) {
 				console.error(err);
 				response.send("Error " + err);
 			}else{
 				var userFound = result.rows;
-				client.query('update paymentMethod set name=$2, pictureUrl=$3, detail=$4, postDate = coalesce(postDate,now()), putDate = now(), deleteDate = deleteDate where id = $1',[req.body.id,req.body.name,req.body.pictureUrl,req.body.detail], function(err, result) {
+				client.query('update shoppingCart set idStore=$2, idUser=$3, status=$4, idPaymentMethod=$5, postDate = coalesce(postDate,now()), putDate = now(), deleteDate = deleteDate where id = $1',[req.body.id,req.body.idStore,req.body.idUser,req.body.status,req.body.idPaymentMethod], function(err, result) {
 					done();
 					if (err) {
 						console.error(err);

@@ -121,6 +121,8 @@ CREATE SEQUENCE paymentMethod_id_seq
 
 ALTER TABLE paymentMethod ALTER COLUMN _id SET DEFAULT NEXTVAL('paymentMethod_id_seq');
 
+select now(), coalesce(null,now());
+
 ALTER TABLE api_user ADD postDate timestamp with time zone;ALTER TABLE api_user  ADD putDate timestamp with time zone;ALTER TABLE api_user  ADD deleteDate timestamp with time zone;
 ALTER TABLE store ADD postDate timestamp with time zone;ALTER TABLE store  ADD putDate timestamp with time zone;ALTER TABLE store  ADD deleteDate timestamp with time zone;
 ALTER TABLE product ADD postDate timestamp with time zone;ALTER TABLE product  ADD putDate timestamp with time zone;ALTER TABLE product  ADD deleteDate timestamp with time zone;
@@ -132,11 +134,6 @@ ALTER TABLE purchaseItem ADD postDate timestamp with time zone;ALTER TABLE purch
 ALTER TABLE paymentMethod ADD postDate timestamp with time zone;ALTER TABLE paymentMethod  ADD putDate timestamp with time zone;ALTER TABLE paymentMethod  ADD deleteDate timestamp with time zone;
 ALTER TABLE shoppingCart ADD postDate timestamp with time zone;ALTER TABLE shoppingCart  ADD putDate timestamp with time zone;ALTER TABLE shoppingCart  ADD deleteDate timestamp with time zone;
 ALTER TABLE shoppingCartItem ADD postDate timestamp with time zone;ALTER TABLE shoppingCartItem  ADD putDate timestamp with time zone;ALTER TABLE shoppingCartItem  ADD deleteDate timestamp with time zone;
-
-
-
-
-
 
 
 update category set name = 'category_'||_id, pictureUrl = 'pictureUrl_'||_id, detail = 'detail_'||_id;
