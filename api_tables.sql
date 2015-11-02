@@ -139,3 +139,7 @@ ALTER TABLE shoppingCartItem ADD postDate timestamp with time zone;ALTER TABLE s
 update category set name = 'category_'||_id, pictureUrl = 'pictureUrl_'||_id, detail = 'detail_'||_id;
 
 select * from purchase;
+
+-- Facebook App: RetailApp
+-- App ID: 989851321053452
+-- App Secret: ccaf3d121fcc0e76da9c5bda605d41f5
