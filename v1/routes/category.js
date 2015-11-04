@@ -1,15 +1,15 @@
-var app = require('../../server');
+module.exports = function(router){
 
-var index = require('./index');
+	var category = require('../models/category');
 
-var category = require('../models/category');
+	router.get('/Category', category.getAll);
 
-app.get(index.version+'/Category', category.getAll);
+	router.put('/Category/', category.put);
 
-app.put(index.version+'/Category/', category.put);
+	router.post('/Category', category.post);
 
-app.post(index.version+'/Category', category.post);
+	router.get('/Category/:id', category.getOne);
 
-app.get(index.version+'/Category/:id', category.getOne);
-
-app.delete(index.version+'/Category/:id', category.delete);
+	router.delete('/Category/:id', category.delete);
+	
+}

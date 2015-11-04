@@ -1,15 +1,15 @@
-var app = require('../../server');
+module.exports = function(router){
 
-var index = require('./index');
+	var purchaseItem = require('../models/purchaseItem');
 
-var purchaseItem = require('../models/purchaseItem');
+	router.get('/PurchaseItem', purchaseItem.getAll);
 
-app.get(index.version+'/PurchaseItem', purchaseItem.getAll);
+	router.put('/PurchaseItem/', purchaseItem.put);
 
-app.put(index.version+'/PurchaseItem/', purchaseItem.put);
+	router.post('/PurchaseItem', purchaseItem.post);
 
-app.post(index.version+'/PurchaseItem', purchaseItem.post);
+	router.get('/PurchaseItem/:id', purchaseItem.getOne);
 
-app.get(index.version+'/PurchaseItem/:id', purchaseItem.getOne);
-
-app.delete(index.version+'/PurchaseItem/:id', purchaseItem.delete);
+	router.delete('/PurchaseItem/:id', purchaseItem.delete);
+	
+}

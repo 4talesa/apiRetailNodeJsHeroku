@@ -1,15 +1,15 @@
-var app = require('../../server');
+module.exports = function(router){
 
-var index = require('./index');
+	var productCategory = require('../models/productCategory');
 
-var productCategory = require('../models/productCategory');
+	router.get('/ProductCategory', productCategory.getAll);
 
-app.get(index.version+'/ProductCategory', productCategory.getAll);
+	router.put('/ProductCategory/', productCategory.put);
 
-app.put(index.version+'/ProductCategory/', productCategory.put);
+	router.post('/ProductCategory', productCategory.post);
 
-app.post(index.version+'/ProductCategory', productCategory.post);
+	router.get('/ProductCategory/:id', productCategory.getOne);
 
-app.get(index.version+'/ProductCategory/:id', productCategory.getOne);
-
-app.delete(index.version+'/ProductCategory/:id', productCategory.delete);
+	router.delete('/ProductCategory/:id', productCategory.delete);
+	
+}

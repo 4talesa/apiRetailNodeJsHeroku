@@ -1,15 +1,15 @@
-var app = require('../../server');
+module.exports = function(router){
+	
+	var user = require('../models/user');
 
-var index = require('./index');
+	router.get('/User', user.getAll);
 
-var user = require('../models/user');
+	router.put('/User/', user.put);
 
-app.get(index.version+'/User', user.getAll);
+	router.post('/User', user.post);
 
-app.put(index.version+'/User/', user.put);
+	router.get('/User/:id', user.getOne);
 
-app.post(index.version+'/User', user.post);
-
-app.get(index.version+'/User/:id', user.getOne);
-
-app.delete(index.version+'/User/:id', user.delete);
+	router.delete('/User/:id', user.delete);
+	
+}

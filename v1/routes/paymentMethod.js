@@ -1,15 +1,15 @@
-var app = require('../../server');
+module.exports = function(router){
 
-var index = require('./index');
+	var paymentMethod = require('../models/paymentMethod');
 
-var paymentMethod = require('../models/paymentMethod');
+	router.get('/PaymentMethod', paymentMethod.getAll);
 
-app.get(index.version+'/PaymentMethod', paymentMethod.getAll);
+	router.put('/PaymentMethod/', paymentMethod.put);
 
-app.put(index.version+'/PaymentMethod/', paymentMethod.put);
+	router.post('/PaymentMethod', paymentMethod.post);
 
-app.post(index.version+'/PaymentMethod', paymentMethod.post);
+	router.get('/PaymentMethod/:id', paymentMethod.getOne);
 
-app.get(index.version+'/PaymentMethod/:id', paymentMethod.getOne);
-
-app.delete(index.version+'/PaymentMethod/:id', paymentMethod.delete);
+	router.delete('/PaymentMethod/:id', paymentMethod.delete);
+	
+}

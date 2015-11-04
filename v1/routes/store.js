@@ -1,15 +1,15 @@
-var app = require('../../server');
+module.exports = function(router){
+	
+	var store = require('../models/store');
 
-var index = require('./index');
+	router.get('/Store', store.getAll);
 
-var store = require('../models/store');
+	router.put('/Store/', store.put);
 
-app.get(index.version+'/Store', store.getAll);
+	router.post('/Store', store.post);
 
-app.put(index.version+'/Store/', store.put);
+	router.get('/Store/:id', store.getOne);
 
-app.post(index.version+'/Store', store.post);
-
-app.get(index.version+'/Store/:id', store.getOne);
-
-app.delete(index.version+'/Store/:id', store.delete);
+	router.delete('/Store/:id', store.delete);
+	
+}

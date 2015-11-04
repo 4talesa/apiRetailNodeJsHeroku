@@ -1,8 +1,5 @@
 var app = require('../../server');
 
-var version = '/v1';
-exports.version = version;
-
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -15,26 +12,33 @@ app.use(function(req, res, next) {
   }
 });
 
-var docs = require('./doc');
+module.exports = function(router){
+	router.get('/testAPI', function(req, res, next){
+		res.json({SecretData: 'abc123'});
+	});
+	
+	var docs = require('./doc');
 
-// Routes to models
-var user = require('./user');
-var store = require('./store');
-//var beaconStore = require('./beaconStore');
-var product = require('./product');
-var productStore = require('./productStore');
-//var productScanning = require('./productScanning');
-var category = require('./category');
-var productCategory = require('./productCategory');
-//var visit = require('./visit');
-var purchase = require('./purchase');
-var purchaseItem = require('./purchaseItem');
-var paymentMethod = require('./paymentMethod');
-//var review = require('./review');
-var shoppingCart = require('./shoppingCart');
-var shoppingCartItem = require('./shoppingCartItem');
-//var shoppingCartShippingSchedule = require('./shoppingCartShippingSchedule');
-//var shoppingCartShippingMethod = require('./shoppingCartShippingMethod');
-//var friend = require('./friend');
-//var achievement = require('./achievement');
-//var achievementType = require('./achievementType');
+	// Routes to models
+	var user = require('./user')(router);
+	var store = require('./store')(router);	
+	var product = require('./product')(router);
+	var productStore = require('./productStore')(router);	
+	var category = require('./category')(router);
+	var productCategory = require('./productCategory')(router);	
+	var purchase = require('./purchase')(router);
+	var purchaseItem = require('./purchaseItem')(router);
+	var paymentMethod = require('./paymentMethod')(router);	
+	var shoppingCart = require('./shoppingCart')(router);
+	var shoppingCartItem = require('./shoppingCartItem')(router);
+	// Milestone 2
+	//var shoppingCartShippingSchedule = require('./shoppingCartShippingSchedule')(router);
+	//var shoppingCartShippingMethod = require('./shoppingCartShippingMethod')(router);
+	//var friend = require('./friend')(router);
+	//var achievement = require('./achievement')(router);
+	//var achievementType = require('./achievementType')(router);
+	//var review = require('./review')(router);
+	//var beaconStore = require('./beaconStore')(router);
+	//var productScanning = require('./productScanning')(router);
+	//var visit = require('./visit')(router);
+}

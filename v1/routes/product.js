@@ -1,15 +1,15 @@
-var app = require('../../server');
+module.exports = function(router){
 
-var index = require('./index');
+	var product = require('../models/product');
 
-var product = require('../models/product');
+	router.get('/Product', product.getAll);
 
-app.get(index.version+'/Product', product.getAll);
+	router.put('/Product/', product.put);
 
-app.put(index.version+'/Product/', product.put);
+	router.post('/Product', product.post);
 
-app.post(index.version+'/Product', product.post);
+	router.get('/Product/:id', product.getOne);
 
-app.get(index.version+'/Product/:id', product.getOne);
-
-app.delete(index.version+'/Product/:id', product.delete);
+	router.delete('/Product/:id', product.delete);
+	
+}

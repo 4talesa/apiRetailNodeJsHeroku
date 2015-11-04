@@ -31,8 +31,9 @@ app.get('/', function(req, res, next) {
 	res.end();
 });
 
-// Routes
-require('./v1/routes/index');
+var apiv1 = express.Router();
+require('./v1/routes/index.js')(apiv1);
+app.use('/api/v1', apiv1);
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));

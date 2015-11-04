@@ -1,15 +1,15 @@
-var app = require('../../server');
+module.exports = function(router){
 
-var index = require('./index');
+	var shoppingCart = require('../models/shoppingCart');
 
-var shoppingCart = require('../models/shoppingCart');
+	router.get('/ShoppingCart', shoppingCart.getAll);
 
-app.get(index.version+'/ShoppingCart', shoppingCart.getAll);
+	router.put('/ShoppingCart/', shoppingCart.put);
 
-app.put(index.version+'/ShoppingCart/', shoppingCart.put);
+	router.post('/ShoppingCart', shoppingCart.post);
 
-app.post(index.version+'/ShoppingCart', shoppingCart.post);
+	router.get('/ShoppingCart/:id', shoppingCart.getOne);
 
-app.get(index.version+'/ShoppingCart/:id', shoppingCart.getOne);
-
-app.delete(index.version+'/ShoppingCart/:id', shoppingCart.delete);
+	router.delete('/ShoppingCart/:id', shoppingCart.delete);
+	
+}
