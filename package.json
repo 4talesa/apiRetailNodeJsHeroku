@@ -7,16 +7,18 @@
     "start": "node server.js"
   },
   "dependencies": {
+    "assert": "latest",
+    "body-parser": "latest",
     "express": "latest",
-	"fs": "latest",
-	"mongodb": "latest",
-	"assert": "latest",
-	"body-parser": "latest",
-	"pg": "latest"
+    "fs": "latest",
+    "mongodb": "latest",
+    "passport": "latest",
+	"passport-http-bearer": "latest",
+    "pg": "latest"
   },
   "engines": {
     "node": "0.12.7"
-  },  
+  },
   "repository": {
     "type": "git",
     "url": "https://git.heroku.com/protected-bayou-8222.git"

@@ -1,18 +1,30 @@
 var app = require('../../server');
 
+var fs = require('fs');
+
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   
-  console.log('api_key:'+req.query.api_key);
+  next();
+  /*console.log('api_key:'+req.query.api_key);
   if (req.query.api_key=='123456789'){
 	  next();
   }else{
 	  res.sendStatus(401);
-  }
+  }*/
 });
 
-module.exports = function(router){
+module.exports = function(router, passport){
+	
+	router.use(passport.authenticate('bearer', { session: false }));
+	router.use(function(req, res, next){
+		fs.appendFile('logs.txt', req.path + " token: " + req.query.access_token + "\n",
+			function(err){
+				next();
+			});
+	});
+	
 	router.get('/testAPI', function(req, res, next){
 		res.json({SecretData: 'abc123'});
 	});

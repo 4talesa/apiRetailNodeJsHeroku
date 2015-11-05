@@ -1,6 +1,6 @@
 ﻿SET timezone = 'America/Los_Angeles';
 
-create table api_user (_id integer, id text, name text, password text, profession text, postDate timestamp with time zone, putDate timestamp with time zone, deleteDate timestamp with time zone);
+create table api_user (_id integer, id text, name text, password text, profession text, token text, postDate timestamp with time zone, putDate timestamp with time zone, deleteDate timestamp with time zone);
 
 CREATE SEQUENCE api_user_id_seq
     INCREMENT 1
@@ -134,8 +134,9 @@ ALTER TABLE purchaseItem ADD postDate timestamp with time zone;ALTER TABLE purch
 ALTER TABLE paymentMethod ADD postDate timestamp with time zone;ALTER TABLE paymentMethod  ADD putDate timestamp with time zone;ALTER TABLE paymentMethod  ADD deleteDate timestamp with time zone;
 ALTER TABLE shoppingCart ADD postDate timestamp with time zone;ALTER TABLE shoppingCart  ADD putDate timestamp with time zone;ALTER TABLE shoppingCart  ADD deleteDate timestamp with time zone;
 ALTER TABLE shoppingCartItem ADD postDate timestamp with time zone;ALTER TABLE shoppingCartItem  ADD putDate timestamp with time zone;ALTER TABLE shoppingCartItem  ADD deleteDate timestamp with time zone;
+ALTER TABLE api_user ADD token text;
 
-
+update api_user set token = 'token123';
 update category set name = 'category_'||_id, pictureUrl = 'pictureUrl_'||_id, detail = 'detail_'||_id;
 
 select * from purchase;
