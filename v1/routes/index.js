@@ -1,7 +1,5 @@
 var app = require('../../server');
 
-var fs = require('fs');
-
 var pg = require('pg');
 
 app.use(function(req, res, next) {
@@ -24,13 +22,7 @@ module.exports = function(router){
 	var token = require('./token')(router);
 	var docs = require('./doc')(router);
 
-	router.use(passport.authenticate('bearer', { session: false }));
-	router.use(function(req, res, next){
-		fs.appendFile('logs.txt', req.path + " token: " + req.query.access_token + "\n",
-			function(err){
-				next();
-			});
-	});
+	router.use(passport.authenticate('bearer', { session: false }));	
 
 	// Routes to models
 	var user = require('./user')(router);
