@@ -2,21 +2,28 @@ var app = require('../../server');
 
 var fs = require('fs');
 
+var pg = require('pg');
+
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   
-  next();
-  /*console.log('api_key:'+req.query.api_key);
-  if (req.query.api_key=='123456789'){
-	  next();
-  }else{
-	  res.sendStatus(401);
-  }*/
+  next();  
 });
 
-module.exports = function(router, passport){
+module.exports = function(router){
 	
+	// Configure Passport
+	var passport = require('passport');
+	require('../config/passport')(passport);
+	
+	// Initialize Passport
+	router.use(passport.initialize());
+	router.use(passport.session()); // persistent login sessions
+	
+	var token = require('./token')(router);
+	var docs = require('./doc')(router);
+
 	router.use(passport.authenticate('bearer', { session: false }));
 	router.use(function(req, res, next){
 		fs.appendFile('logs.txt', req.path + " token: " + req.query.access_token + "\n",
@@ -24,12 +31,6 @@ module.exports = function(router, passport){
 				next();
 			});
 	});
-	
-	router.get('/testAPI', function(req, res, next){
-		res.json({SecretData: 'abc123'});
-	});
-	
-	var docs = require('./doc');
 
 	// Routes to models
 	var user = require('./user')(router);
