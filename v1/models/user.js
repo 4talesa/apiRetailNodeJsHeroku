@@ -116,3 +116,26 @@ exports.put = function (req, res, next) {
 		});
 	});
 };
+
+exports.findOne = function (id, functionDone) {
+	pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+		client.query('SELECT * FROM api_user where id = $1 and deleteDate is null',[id], function(err, result) {
+			done();
+			if (err) {
+				console.log('user not found for the id '+id);
+				console.error(err);
+				return functionDone(null, 'user not found for the id '+id);
+			}else{
+				if (result.rows.length>0){				
+					console.log('user found for the id '+id);
+					console.log(result.rows[0]);
+					return functionDone(result.rows[0], false);
+				}else{
+					console.log('user not found for the id '+id);
+					console.error(err);
+					return functionDone(null, 'user not found for the id '+id);
+				}
+			}
+		});
+	});
+};

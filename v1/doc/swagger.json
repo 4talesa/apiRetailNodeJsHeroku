@@ -9,12 +9,20 @@
     "schemes": [
         "https"
     ],
-    "basePath": "/v1",
+    "basePath": "/api/v1",
     "produces": [
         "application/json"
     ],
     "paths": {
         "/User": {
+            "parameters": [
+                {
+                    "name": "access_token",
+                    "in": "query",
+                    "type": "string",
+                    "required": true
+                }
+            ],
             "get": {
                 "summary": "User List",
                 "description": "The List of Users of our system.",
@@ -168,6 +176,14 @@
             }
         },
         "/Store": {
+            "parameters": [
+                {
+                    "name": "access_token",
+                    "in": "query",
+                    "type": "string",
+                    "required": true
+                }
+            ],
             "get": {
                 "summary": "Store List",
                 "description": "The List of Stores of our system.",
@@ -321,6 +337,14 @@
             }
         },
         "/Product": {
+            "parameters": [
+                {
+                    "name": "access_token",
+                    "in": "query",
+                    "type": "string",
+                    "required": true
+                }
+            ],
             "get": {
                 "summary": "Product List",
                 "description": "The List of Products of our system.",
@@ -474,15 +498,23 @@
             }
         },
         "/Category": {
+            "parameters": [
+                {
+                    "name": "access_token",
+                    "in": "query",
+                    "type": "string",
+                    "required": true
+                }
+            ],
             "get": {
                 "summary": "Category List",
                 "description": "The List of Categorys of our system.",
                 "tags": [
-                    "Categorys"
+                    "Categories"
                 ],
                 "responses": {
                     "200": {
-                        "description": "An array of Categorys",
+                        "description": "An array of Categories",
                         "schema": {
                             "type": "array",
                             "items": {
@@ -512,7 +544,7 @@
                     }
                 ],
                 "tags": [
-                    "Categorys"
+                    "Categories"
                 ],
                 "responses": {
                     "200": {
@@ -546,11 +578,11 @@
                     }
                 ],
                 "tags": [
-                    "Categorys"
+                    "Categories"
                 ],
                 "responses": {
                     "200": {
-                        "description": "An array of Categorys updated",
+                        "description": "An array of Categories updated",
                         "schema": {
                             "type": "array",
                             "items": {
@@ -581,11 +613,11 @@
                 "summary": "Get Category by id",
                 "description": "Return a unique Category by id.",
                 "tags": [
-                    "Categorys"
+                    "Categories"
                 ],
                 "responses": {
                     "200": {
-                        "description": "An array of Categorys found",
+                        "description": "An array of Categories found",
                         "schema": {
                             "type": "array",
                             "items": {
@@ -605,11 +637,11 @@
                 "summary": "Delete Category by id",
                 "description": "Delete a unique Category by id.",
                 "tags": [
-                    "Categorys"
+                    "Categories"
                 ],
                 "responses": {
                     "200": {
-                        "description": "An array of Categorys",
+                        "description": "An array of Categories",
                         "schema": {
                             "type": "array",
                             "items": {
@@ -627,6 +659,14 @@
             }
         },
         "/ProductStore": {
+            "parameters": [
+                {
+                    "name": "access_token",
+                    "in": "query",
+                    "type": "string",
+                    "required": true
+                }
+            ],
             "get": {
                 "summary": "ProductStore List",
                 "description": "The List of ProductStores of our system.",
@@ -780,6 +820,14 @@
             }
         },
         "/ProductCategory": {
+            "parameters": [
+                {
+                    "name": "access_token",
+                    "in": "query",
+                    "type": "string",
+                    "required": true
+                }
+            ],
             "get": {
                 "summary": "ProductCategory List",
                 "description": "The List of ProductCategorys of our system.",
@@ -933,6 +981,14 @@
             }
         },
         "/ShoppingCart": {
+            "parameters": [
+                {
+                    "name": "access_token",
+                    "in": "query",
+                    "type": "string",
+                    "required": true
+                }
+            ],
             "get": {
                 "summary": "ShoppingCart List",
                 "description": "The List of ShoppingCarts of our system.",
@@ -1086,6 +1142,14 @@
             }
         },
         "/ShoppingCartItem": {
+            "parameters": [
+                {
+                    "name": "access_token",
+                    "in": "query",
+                    "type": "string",
+                    "required": true
+                }
+            ],
             "get": {
                 "summary": "ShoppingCartItem List",
                 "description": "The List of ShoppingCartItems of our system.",
@@ -1239,6 +1303,14 @@
             }
         },
         "/Purchase": {
+            "parameters": [
+                {
+                    "name": "access_token",
+                    "in": "query",
+                    "type": "string",
+                    "required": true
+                }
+            ],
             "get": {
                 "summary": "Purchase List",
                 "description": "The List of Purchases of our system.",
@@ -1392,6 +1464,14 @@
             }
         },
         "/PurchaseItem": {
+            "parameters": [
+                {
+                    "name": "access_token",
+                    "in": "query",
+                    "type": "string",
+                    "required": true
+                }
+            ],
             "get": {
                 "summary": "PurchaseItem List",
                 "description": "The List of PurchaseItems of our system.",
@@ -1545,6 +1625,14 @@
             }
         },
         "/PaymentMethod": {
+            "parameters": [
+                {
+                    "name": "access_token",
+                    "in": "query",
+                    "type": "string",
+                    "required": true
+                }
+            ],
             "get": {
                 "summary": "PaymentMethod List",
                 "description": "The List of PaymentMethods of our system.",

@@ -6,11 +6,16 @@ info:
 host: protected-bayou-8222.herokuapp.com
 schemes:
   - https
-basePath: /v1
+basePath: /api/v1
 produces:
   - application/json
 paths:
   /User:
+    parameters:
+        - name: access_token
+          in: query
+          type: string
+          required: true
     get:
       summary: User List
       description: The List of Users of our system.
@@ -111,6 +116,11 @@ paths:
           schema:
             $ref: '#/definitions/Error'
   /Store:
+    parameters:
+        - name: access_token
+          in: query
+          type: string
+          required: true
     get:
       summary: Store List
       description: The List of Stores of our system.
@@ -211,6 +221,11 @@ paths:
           schema:
             $ref: '#/definitions/Error'
   /Product:
+    parameters:
+        - name: access_token
+          in: query
+          type: string
+          required: true
     get:
       summary: Product List
       description: The List of Products of our system.
@@ -311,14 +326,19 @@ paths:
           schema:
             $ref: '#/definitions/Error'
   /Category:
+    parameters:
+        - name: access_token
+          in: query
+          type: string
+          required: true
     get:
       summary: Category List
       description: The List of Categorys of our system.
       tags:
-        - Categorys
+        - Categories
       responses:
         '200':
-          description: An array of Categorys
+          description: An array of Categories
           schema:
             type: array
             items:
@@ -337,7 +357,7 @@ paths:
               $ref: '#/definitions/Category'
             description: Unique customer identifier to be used for experience customization.
       tags:
-        - Categorys
+        - Categories
       responses:
         '200':
           description: Category posted
@@ -359,10 +379,10 @@ paths:
               $ref: '#/definitions/Category'
             description: Unique customer identifier to be used for experience customization.
       tags:
-        - Categorys
+        - Categories
       responses:
         '200':
-          description: An array of Categorys updated
+          description: An array of Categories updated
           schema:
             type: array
             items:
@@ -382,10 +402,10 @@ paths:
       summary: Get Category by id
       description: Return a unique Category by id.
       tags:
-        - Categorys
+        - Categories
       responses:
         '200':
-          description: An array of Categorys found
+          description: An array of Categories found
           schema:
             type: array
             items:
@@ -398,10 +418,10 @@ paths:
       summary: Delete Category by id
       description: Delete a unique Category by id.
       tags:
-        - Categorys
+        - Categories
       responses:
         '200':
-          description: An array of Categorys
+          description: An array of Categories
           schema:
             type: array
             items:
@@ -411,6 +431,11 @@ paths:
           schema:
             $ref: '#/definitions/Error'
   /ProductStore:
+    parameters:
+        - name: access_token
+          in: query
+          type: string
+          required: true
     get:
       summary: ProductStore List
       description: The List of ProductStores of our system.
@@ -511,6 +536,11 @@ paths:
           schema:
             $ref: '#/definitions/Error'
   /ProductCategory:
+    parameters:
+        - name: access_token
+          in: query
+          type: string
+          required: true
     get:
       summary: ProductCategory List
       description: The List of ProductCategorys of our system.
@@ -611,6 +641,11 @@ paths:
           schema:
             $ref: '#/definitions/Error'
   /ShoppingCart:
+    parameters:
+        - name: access_token
+          in: query
+          type: string
+          required: true
     get:
       summary: ShoppingCart List
       description: The List of ShoppingCarts of our system.
@@ -711,6 +746,11 @@ paths:
           schema:
             $ref: '#/definitions/Error'
   /ShoppingCartItem:
+    parameters:
+        - name: access_token
+          in: query
+          type: string
+          required: true
     get:
       summary: ShoppingCartItem List
       description: The List of ShoppingCartItems of our system.
@@ -811,6 +851,11 @@ paths:
           schema:
             $ref: '#/definitions/Error'
   /Purchase:
+    parameters:
+        - name: access_token
+          in: query
+          type: string
+          required: true
     get:
       summary: Purchase List
       description: The List of Purchases of our system.
@@ -911,6 +956,11 @@ paths:
           schema:
             $ref: '#/definitions/Error'
   /PurchaseItem:
+    parameters:
+        - name: access_token
+          in: query
+          type: string
+          required: true
     get:
       summary: PurchaseItem List
       description: The List of PurchaseItems of our system.
@@ -1011,6 +1061,11 @@ paths:
           schema:
             $ref: '#/definitions/Error'
   /PaymentMethod:
+    parameters:
+        - name: access_token
+          in: query
+          type: string
+          required: true
     get:
       summary: PaymentMethod List
       description: The List of PaymentMethods of our system.

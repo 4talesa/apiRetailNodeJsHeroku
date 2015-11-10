@@ -20,6 +20,7 @@ module.exports = function(router){
 	router.use(passport.session()); // persistent login sessions
 	
 	var token = require('./token')(router);
+	var grantAuth = require('./grantAuth')(router);
 	var docs = require('./doc')(router);
 
 	router.use(passport.authenticate('bearer', { session: false }));	

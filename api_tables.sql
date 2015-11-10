@@ -121,7 +121,18 @@ CREATE SEQUENCE paymentMethod_id_seq
 
 ALTER TABLE paymentMethod ALTER COLUMN _id SET DEFAULT NEXTVAL('paymentMethod_id_seq');
 
-create table token (_id integer, idUser text, expireDate timestamp with time zone);
+create table grantAuth (_id integer, access_token text, token_type text, state text, scope text, expires_in integer, clientID text, redirectURI text, postDate timestamp with time zone, putDate timestamp with time zone, deleteDate timestamp with time zone);
+
+CREATE SEQUENCE grantAuth_id_seq
+    INCREMENT 1
+    MINVALUE 1
+    MAXVALUE 9223372036854775807
+    START 1
+    CACHE 1;
+
+ALTER TABLE grantAuth ALTER COLUMN _id SET DEFAULT NEXTVAL('grantAuth_id_seq');
+
+create table token (_id integer, access_token text, token_type text, state text, scope text, expires_in integer, clientID text, redirectURI text, postDate timestamp with time zone, putDate timestamp with time zone, deleteDate timestamp with time zone);
 
 CREATE SEQUENCE token_id_seq
     INCREMENT 1
@@ -132,24 +143,24 @@ CREATE SEQUENCE token_id_seq
 
 ALTER TABLE token ALTER COLUMN _id SET DEFAULT NEXTVAL('token_id_seq');
 
-select now(), coalesce(null,now()), current_timestamp + (20 ||' minutes')::interval;
+SELECT * FROM token where access_token = '123456' and (current_timestamp < postDate + (expires_in ||' seconds')::interval)
+
+select now() as now, coalesce(null,now()) as now_coalesce, current_timestamp as current_time_, current_timestamp + (20 ||' seconds')::interval as current_time_less_20_sec, current_timestamp + (20 ||' minutes')::interval;
 
 delete from token;
 select * from token;
-insert into token (idUser, expireDate) values (1,current_timestamp + (2 ||' minutes')::interval) RETURNING _id, idUser, expireDate
+select * from grantAuth;
+insert into token (access_token, token_type, state, scope, clientID, redirectURI, expires_in, postDate) values ('123456','bearer', 'active', 'retailapp',60, now())
+insert into grantAuth (access_grantAuth, grantAuth_type, state, scope, expires_in, postDate) values ('123456','bearer', 'active', 'retailapp',60, now())
 
-ALTER TABLE api_user ADD postDate timestamp with time zone;ALTER TABLE api_user  ADD putDate timestamp with time zone;ALTER TABLE api_user  ADD deleteDate timestamp with time zone;
-ALTER TABLE store ADD postDate timestamp with time zone;ALTER TABLE store  ADD putDate timestamp with time zone;ALTER TABLE store  ADD deleteDate timestamp with time zone;
-ALTER TABLE product ADD postDate timestamp with time zone;ALTER TABLE product  ADD putDate timestamp with time zone;ALTER TABLE product  ADD deleteDate timestamp with time zone;
-ALTER TABLE productStore ADD postDate timestamp with time zone;ALTER TABLE productStore  ADD putDate timestamp with time zone;ALTER TABLE productStore  ADD deleteDate timestamp with time zone;
-ALTER TABLE category ADD postDate timestamp with time zone;ALTER TABLE category  ADD putDate timestamp with time zone;ALTER TABLE category  ADD deleteDate timestamp with time zone;
-ALTER TABLE productCategory ADD postDate timestamp with time zone;ALTER TABLE productCategory  ADD putDate timestamp with time zone;ALTER TABLE productCategory  ADD deleteDate timestamp with time zone;
-ALTER TABLE purchase ADD postDate timestamp with time zone;ALTER TABLE purchase  ADD putDate timestamp with time zone;ALTER TABLE purchase  ADD deleteDate timestamp with time zone;
-ALTER TABLE purchaseItem ADD postDate timestamp with time zone;ALTER TABLE purchaseItem  ADD putDate timestamp with time zone;ALTER TABLE purchaseItem  ADD deleteDate timestamp with time zone;
-ALTER TABLE paymentMethod ADD postDate timestamp with time zone;ALTER TABLE paymentMethod  ADD putDate timestamp with time zone;ALTER TABLE paymentMethod  ADD deleteDate timestamp with time zone;
-ALTER TABLE shoppingCart ADD postDate timestamp with time zone;ALTER TABLE shoppingCart  ADD putDate timestamp with time zone;ALTER TABLE shoppingCart  ADD deleteDate timestamp with time zone;
-ALTER TABLE shoppingCartItem ADD postDate timestamp with time zone;ALTER TABLE shoppingCartItem  ADD putDate timestamp with time zone;ALTER TABLE shoppingCartItem  ADD deleteDate timestamp with time zone;
-ALTER TABLE api_user ADD token text;
+ALTER TABLE token add IdClient text;
+ALTER TABLE token add redirectURI text;
+ALTER TABLE token add idUser text;
+
+drop table token;
+drop sequence token_id_seq;
+drop table grantAuth;
+drop sequence grantAuth_id_seq;
 
 update api_user set token = 'token'||_id;
 update category set name = 'category_'||_id, pictureUrl = 'pictureUrl_'||_id, detail = 'detail_'||_id;
