@@ -67,7 +67,7 @@ var get = function (req, res, next) {
 	redirect_uri: The URL the app will redirect
 	scope: comma separated list of scopes
 	state: An unguessable random string. It is used to protect against cross-site request forgery attacks.
-	result_type: null redirect to redirect_uri, else return available JSON
+	response_type: null redirect to redirect_uri, else return available JSON
 	
 	return a code on the uri: redirect_uri?code=AUTH_CODE_HERE
 	or as json
@@ -110,9 +110,16 @@ var get = function (req, res, next) {
 					res.write(JSON.stringify(resultError));
 					res.end();
 				}else{
-					var resultSucess = { 'code': access_token , 'token_type': token_type, 'expires_in': expires_in, 'scope': scope, 'state': state};
+					var resultSucess = {'code': access_token,
+										'token_type': token_type,
+										'expires_in': expires_in,
+										'scope': scope,
+										'state': state,
+										'refresh_token': access_token,
+										'access_token': access_token
+										};
 					
-					if(req.query.result_type=='JSON')
+					if(req.query.response_type=='JSON')
 					{
 						res.writeHead(200, { 'Content-Type': 'application/json' });
 						console.log(resultSucess);
@@ -120,9 +127,9 @@ var get = function (req, res, next) {
 						res.end();
 					}else{
 						console.log(resultSucess);
-						console.log('Redirect to: '+req.query.redirect_uri+'?code='+access_token+'&state='+state);
-						res.redirect(req.query.redirect_uri+'?code='+access_token+'&state='+state);
-						res.end();
+						var urlRedirectTo = req.query.redirect_uri+'?code='+access_token+'&state='+state+'&access_token='+access_token+'&expires_in'+expires_in;
+						console.log('Redirect to: '+urlRedirectTo);
+						res.redirect(urlRedirectTo);
 					}
 				}
 			});			

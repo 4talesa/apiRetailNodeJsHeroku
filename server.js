@@ -16,6 +16,25 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  
+  pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+		client.query('insert into api_log (originalUrl, url, postDate) values ($1,$2,current_timestamp) RETURNING _id, originalUrl, url, postDate',
+					[req.originalUrl, req.url], function(err, result) {
+			done();
+			if (err) {				
+				console.error('api_log not inserted');
+			}else{
+				if (result.rows.length>0){					
+					console.log(result.rows[0]);
+				}else{					
+					console.error('api_log not inserted');
+				}
+			}
+		});
+	});
+  console.log('req.originalUrl: '+req.originalUrl);
+  console.log('req.url: '+req.url);
+  
   next();
 });
 
