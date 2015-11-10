@@ -18,7 +18,7 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-		client.query('insert into api_log (originalUrl, url, postDate) values ($1,$2,current_timestamp) RETURNING _id, originalUrl, url, postDate',
+		client.query('insert into api_log (originalUrl, url, body, postDate) values ($1,$2,$3,current_timestamp) RETURNING _id, originalUrl, url,'+JSON.stringify(req.body)+', postDate',
 					[req.originalUrl, req.url], function(err, result) {
 			done();
 			if (err) {				
