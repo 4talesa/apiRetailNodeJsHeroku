@@ -119,7 +119,7 @@ var get = function (req, res, next) {
 										'access_token': access_token
 										};
 					
-					if(req.query.response_type=='JSON')
+					if(req.query.response_type=='json')
 					{
 						res.writeHead(200, { 'Content-Type': 'application/json' });
 						console.log(resultSucess);

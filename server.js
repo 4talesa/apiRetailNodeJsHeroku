@@ -32,9 +32,11 @@ app.use(function(req, res, next) {
 			}
 		});
 	});
-  console.log('req.originalUrl: '+req.originalUrl);
-  console.log('req.url: '+req.url);
-  
+  console.log('req.originalUrl: '+ req.originalUrl);
+  console.log('req.url: '+ req.url);
+  console.log('req.body: '+JSON.stringify(req.body));
+  //var jsonObject = JSON.parse(req.body);
+	
   next();
 });
 
