@@ -143,6 +143,18 @@ CREATE SEQUENCE token_id_seq
 
 ALTER TABLE token ALTER COLUMN _id SET DEFAULT NEXTVAL('token_id_seq');
 
+create table api_log (_id integer, originalUrl text, url text, body text, postDate timestamp with time zone, putDate timestamp with time zone, deleteDate timestamp with time zone);
+
+CREATE SEQUENCE api_log_id_seq
+    INCREMENT 1
+    MINVALUE 1
+    MAXVALUE 9223372036854775807
+    START 1
+    CACHE 1;
+
+ALTER TABLE api_log ALTER COLUMN _id SET DEFAULT NEXTVAL('api_log_id_seq');
+
+SELECT * FROM api_log;
 SELECT * FROM token where access_token = '123456' and (current_timestamp < postDate + (expires_in ||' seconds')::interval)
 
 select now() as now, coalesce(null,now()) as now_coalesce, current_timestamp as current_time_, current_timestamp + (20 ||' seconds')::interval as current_time_less_20_sec, current_timestamp + (20 ||' minutes')::interval;

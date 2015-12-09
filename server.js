@@ -13,11 +13,20 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
+// Suport for swagger
+var argv = require('minimist')(process.argv.slice(2));
+var swagger = require("swagger-node-express");
+var subpath = express();
+
+app.use(bodyParser());
+app.use("/doc/v1", subpath);
+swagger.setAppHandler(subpath);
+
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   
-  pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+  /*pg.connect(process.env.DATABASE_URL, function(err, client, done) {
 		client.query('insert into api_log (originalUrl, url, body, postDate) values ($1,$2,$3,current_timestamp) RETURNING _id, originalUrl, url,'+JSON.stringify(req.body)+', postDate',
 					[req.originalUrl, req.url], function(err, result) {
 			done();
@@ -31,11 +40,7 @@ app.use(function(req, res, next) {
 				}
 			}
 		});
-	});
-  console.log('req.originalUrl: '+ req.originalUrl);
-  console.log('req.url: '+ req.url);
-  console.log('req.body: '+JSON.stringify(req.body));
-  //var jsonObject = JSON.parse(req.body);
+	});*/
 	
   next();
 });
@@ -53,6 +58,32 @@ app.get('/', function(req, res, next) {
 var apiv1 = express.Router();
 require('./v1/routes/index.js')(apiv1);
 app.use('/api/v1', apiv1);
+
+swagger.setApiInfo({
+    title: "Retail API",
+    description: "API to serve the Retail App",
+    termsOfServiceUrl: "",
+    contact: "rond.borges@totvs.com",
+    license: "",
+    licenseUrl: ""
+});
+
+app.use('/static_dist', express.static(__dirname + '/v1/doc/dist'));
+
+subpath.get('/', function (req, res) {
+	console.log('Access Swagger');
+	res.sendFile(__dirname + '/v1/doc/dist/index.html');
+});
+
+swagger.configureSwaggerPaths('', 'api-docs', '');
+var domain = 'localhost:'+(process.env.PORT || 5000);
+if(argv.domain !== undefined)
+	domain = argv.domain;
+else
+	console.log('No --domain=xxx specified, taking default hostname "localhost".');
+console.log('Domain: ' + domain);
+var applicationUrl = 'http://' + domain;
+swagger.configure(applicationUrl, '1.0.0');
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));

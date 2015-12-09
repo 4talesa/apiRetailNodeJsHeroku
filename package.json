@@ -14,7 +14,9 @@
     "mongodb": "latest",
     "passport": "latest",
 	"passport-http-bearer": "latest",
-    "pg": "latest"
+    "pg": "latest",
+	"swagger-node-express": "~2.0",
+	"minimist": "*"
   },
   "engines": {
     "node": "0.12.7"

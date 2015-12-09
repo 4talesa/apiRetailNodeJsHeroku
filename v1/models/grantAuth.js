@@ -127,7 +127,7 @@ var get = function (req, res, next) {
 						res.end();
 					}else{
 						console.log(resultSucess);
-						var urlRedirectTo = req.query.redirect_uri+'?code='+access_token+'&state='+state+'&access_token='+access_token+'&expires_in'+expires_in;
+						var urlRedirectTo = req.query.redirect_uri+'?code='+access_token+'&state='+state+'&access_token='+access_token+'&expires_in='+expires_in;
 						console.log('Redirect to: '+urlRedirectTo);
 						res.redirect(urlRedirectTo);
 					}

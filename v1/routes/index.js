@@ -23,7 +23,7 @@ module.exports = function(router){
 	var grantAuth = require('./grantAuth')(router);
 	var docs = require('./doc')(router);
 
-	router.use(passport.authenticate('bearer', { session: false }));	
+	//router.use(passport.authenticate('bearer', { session: false }));	
 
 	// Routes to models
 	var user = require('./user')(router);
