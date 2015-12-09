@@ -6,7 +6,10 @@ var assert = require('assert');
 
 var app = module.exports = express();
 
-app.set('port', (process.env.PORT || 5000));
+var appPort = (process.env.PORT || 5000);
+var appDomain = (process.env.URL || 'http://localhost') ;
+
+app.set('port', appPort);
 
 // Suport for body variables
 var bodyParser = require('body-parser');
@@ -68,7 +71,7 @@ swagger.setApiInfo({
     licenseUrl: ""
 });
 
-app.use('/static_dist', express.static(__dirname + '/v1/doc/dist'));
+app.use('/doc/v1/dist', express.static(__dirname + '/v1/doc/dist'));
 
 subpath.get('/', function (req, res) {
 	console.log('Access Swagger');
@@ -76,13 +79,13 @@ subpath.get('/', function (req, res) {
 });
 
 swagger.configureSwaggerPaths('', 'api-docs', '');
-var domain = 'localhost:'+(process.env.PORT || 5000);
+var domain = appDomain+':'+appPort;
 if(argv.domain !== undefined)
 	domain = argv.domain;
 else
 	console.log('No --domain=xxx specified, taking default hostname "localhost".');
 console.log('Domain: ' + domain);
-var applicationUrl = 'http://' + domain;
+var applicationUrl = domain;
 swagger.configure(applicationUrl, '1.0.0');
 
 app.listen(app.get('port'), function() {
