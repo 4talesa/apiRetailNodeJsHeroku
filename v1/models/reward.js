@@ -28,7 +28,7 @@ exports.getAll = function (req, res, next) {
 exports.post = function (req, res, next) {
 	
 	pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-		client.query('insert into reward (id, name, pictureUrl, detail, amount, postDate, putDate, deleteDate) values ($1,$2,$3,$4,now(),null,null) RETURNING _id, id, name, pictureUrl, detail, amount, postDate, putDate, deleteDate',[req.body.id,req.body.name,req.body.pictureUrl,req.body.detail,req.body.amount], function(err, result) {
+		client.query('insert into reward (id, name, pictureUrl, detail, amount, postDate, putDate, deleteDate) values ($1,$2,$3,$4,$5,now(),null,null) RETURNING _id, id, name, pictureUrl, detail, amount, postDate, putDate, deleteDate',[req.body.id,req.body.name,req.body.pictureUrl,req.body.detail,req.body.amount], function(err, result) {
 			done();
 			if (err) {
 				console.error(err);
