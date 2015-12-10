@@ -38,6 +38,7 @@ module.exports = function(router){
 	var shoppingCart = require('./shoppingCart')(router);
 	var shoppingCartItem = require('./shoppingCartItem')(router);
 	// Milestone 2
+	var reward = require('./reward')(router);
 	//var shoppingCartShippingSchedule = require('./shoppingCartShippingSchedule')(router);
 	//var shoppingCartShippingMethod = require('./shoppingCartShippingMethod')(router);
 	//var friend = require('./friend')(router);
