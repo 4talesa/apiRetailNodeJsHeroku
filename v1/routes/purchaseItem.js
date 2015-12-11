@@ -12,4 +12,6 @@ module.exports = function(router){
 
 	router.delete('/PurchaseItem/:id', purchaseItem.delete);
 	
+	router.get('/PurchaseItem/Purchase/:id', purchaseItem.getByPurchase);
+	
 }

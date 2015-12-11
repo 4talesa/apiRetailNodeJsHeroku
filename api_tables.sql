@@ -105,6 +105,8 @@ CREATE SEQUENCE purchase_id_seq
 
 ALTER TABLE purchase ALTER COLUMN _id SET DEFAULT NEXTVAL('purchase_id_seq');
 
+ALTER TABLE purchase ADD COLUMN date timestamp with time zone;
+
 create table purchaseItem (_id integer, id text, idpurchase text, idProduct text, status text, amountRequested numeric, amountPurchased numeric, postDate timestamp with time zone, putDate timestamp with time zone, deleteDate timestamp with time zone);
 
 CREATE SEQUENCE purchaseItem_id_seq

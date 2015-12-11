@@ -12,4 +12,6 @@ module.exports = function(router){
 
 	router.delete('/Purchase/:id', purchase.delete);
 	
+	router.get('/Purchase/User/:id', purchase.getByUser);
+	
 }
