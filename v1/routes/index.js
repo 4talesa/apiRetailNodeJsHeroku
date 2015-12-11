@@ -39,13 +39,13 @@ module.exports = function(router){
 	var shoppingCartItem = require('./shoppingCartItem')(router);
 	// Milestone 2
 	var reward = require('./reward')(router);
+	var reward = require('./beaconStore')(router);
 	//var shoppingCartShippingSchedule = require('./shoppingCartShippingSchedule')(router);
 	//var shoppingCartShippingMethod = require('./shoppingCartShippingMethod')(router);
 	//var friend = require('./friend')(router);
 	//var achievement = require('./achievement')(router);
 	//var achievementType = require('./achievementType')(router);
 	//var review = require('./review')(router);
-	//var beaconStore = require('./beaconStore')(router);
 	//var productScanning = require('./productScanning')(router);
 	//var visit = require('./visit')(router);
 }

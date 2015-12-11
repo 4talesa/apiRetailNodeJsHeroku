@@ -1705,6 +1705,10 @@ definitions:
       pictureUrl:
         type: string
         description: Picture Url
+      totalItem:
+        type: number
+        format: double
+        description: Sub Total
       postDate:
         type: string
         format: date-time
