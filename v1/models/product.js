@@ -116,3 +116,21 @@ exports.put = function (req, res, next) {
 		});
 	});
 };
+
+exports.getByCategory = function (req, res, next) {
+	
+	pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+		client.query('SELECT p.* FROM product p inner join productcategory pc on pc.idproduct = p.id inner join category c on c.id = pc.idcategory where pc.id = $1',[req.params.id], function(err, result) {
+			done();
+			if (err) {
+				console.error(err);
+				response.send("Error " + err);
+			}else{
+				res.writeHead(200, { 'Content-Type': 'application/json' });
+				console.log( result.rows );
+				res.write(JSON.stringify(result.rows));
+				res.end();
+			}
+		});
+	});
+};
