@@ -22,6 +22,8 @@ CREATE SEQUENCE store_id_seq
 
 ALTER TABLE store ALTER COLUMN _id SET DEFAULT NEXTVAL('store_id_seq');
 
+ALTER TABLE store ADD COLUMN postalCode text;
+
 create table product (_id integer, id text, name text, pictureUrl text, detail text, postDate timestamp with time zone, putDate timestamp with time zone, deleteDate timestamp with time zone);
 
 CREATE SEQUENCE product_id_seq
@@ -32,6 +34,8 @@ CREATE SEQUENCE product_id_seq
     CACHE 1;
 
 ALTER TABLE product ALTER COLUMN _id SET DEFAULT NEXTVAL('product_id_seq');
+
+ALTER TABLE product ADD COLUMN unit text;
 
 create table category (_id integer, id text, name text, pictureUrl text, detail text, postDate timestamp with time zone, putDate timestamp with time zone, deleteDate timestamp with time zone);
 
@@ -54,6 +58,8 @@ CREATE SEQUENCE productStore_id_seq
     CACHE 1;
 
 ALTER TABLE productStore ALTER COLUMN _id SET DEFAULT NEXTVAL('productStore_id_seq');
+
+ALTER TABLE productStore ADD COLUMN price numeric;
 
 create table productCategory (_id integer, id text, idProduct text, idCategory text, postDate timestamp with time zone, putDate timestamp with time zone, deleteDate timestamp with time zone);
 
@@ -121,6 +127,17 @@ CREATE SEQUENCE paymentMethod_id_seq
 
 ALTER TABLE paymentMethod ALTER COLUMN _id SET DEFAULT NEXTVAL('paymentMethod_id_seq');
 
+create table reward (_id integer, id text, name text, amount numeric, pictureUrl text, detail text, postDate timestamp with time zone, putDate timestamp with time zone, deleteDate timestamp with time zone);
+
+CREATE SEQUENCE reward_id_seq
+    INCREMENT 1
+    MINVALUE 1
+    MAXVALUE 9223372036854775807
+    START 1
+    CACHE 1;
+
+ALTER TABLE reward ALTER COLUMN _id SET DEFAULT NEXTVAL('reward_id_seq');
+
 create table grantAuth (_id integer, access_token text, token_type text, state text, scope text, expires_in integer, clientID text, redirectURI text, postDate timestamp with time zone, putDate timestamp with time zone, deleteDate timestamp with time zone);
 
 CREATE SEQUENCE grantAuth_id_seq
@@ -179,6 +196,8 @@ update category set name = 'category_'||_id, pictureUrl = 'pictureUrl_'||_id, de
 
 select * from purchase;
 
--- Facebook App: RetailApp
--- App ID: 989851321053452
--- App Secret: ccaf3d121fcc0e76da9c5bda605d41f5
+
+select * from productcategory;
+delete from productcategory where idproduct is null;
+
+update product set unit = 'each';

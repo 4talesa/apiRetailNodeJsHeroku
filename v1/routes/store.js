@@ -12,4 +12,6 @@ module.exports = function(router){
 
 	router.delete('/Store/:id', store.delete);
 	
+	router.get('/Store/PostalCode/:id', store.getByPostalCode);
+	
 }
