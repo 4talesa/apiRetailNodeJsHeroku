@@ -28,7 +28,7 @@ exports.getAll = function (req, res, next) {
 exports.post = function (req, res, next) {
 	
 	pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-		client.query('insert into productCategory (id, name, idProduct, idCategory, postDate, putDate, deleteDate) values ($1,$2,$3,$4,now(),null,null) RETURNING _id, id, name, idProduct, idCategory, postDate, putDate, deleteDate',[req.body.id,req.body.name,req.body.idProduct,req.body.idCategory], function(err, result) {
+		client.query('insert into productCategory (id, idProduct, idCategory, postDate, putDate, deleteDate) values ($1,$2,$3,now(),null,null) RETURNING _id, id, idProduct, idCategory, postDate, putDate, deleteDate',[req.body.id,req.body.idProduct,req.body.idCategory], function(err, result) {
 			done();
 			if (err) {
 				console.error(err);

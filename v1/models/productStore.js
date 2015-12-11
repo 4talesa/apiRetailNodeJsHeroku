@@ -28,7 +28,7 @@ exports.getAll = function (req, res, next) {
 exports.post = function (req, res, next) {
 	
 	pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-		client.query('insert into productStore (id, idProduct, idStore, postDate, putDate, deleteDate) values ($1,$2,$3,now(),null,null) RETURNING _id, id, idProduct, idStore, postDate, putDate, deleteDate',[req.body.id,req.body.idProduct,req.body.idStore], function(err, result) {
+		client.query('insert into productStore (id, idProduct, idStore, price, postDate, putDate, deleteDate) values ($1,$2,$3,$4,now(),null,null) RETURNING _id, id, idProduct, idStore, price, postDate, putDate, deleteDate',[req.body.id,req.body.idProduct,req.body.idStore,req.body.price], function(err, result) {
 			done();
 			if (err) {
 				console.error(err);
@@ -98,7 +98,7 @@ exports.put = function (req, res, next) {
 				response.send("Error " + err);
 			}else{
 				var userFound = result.rows;
-				client.query('update productStore set idProduct=$2, password=$3, postDate = coalesce(postDate,now()), putDate = now(), deleteDate = deleteDate where id = $1',[req.body.id,req.body.idProduct,req.body.idStore], function(err, result) {
+				client.query('update productStore set idProduct=$2, idStore=$3, price=$4, postDate = coalesce(postDate,now()), putDate = now(), deleteDate = deleteDate where id = $1',[req.body.id,req.body.idProduct,req.body.idStore,req.body.price], function(err, result) {
 					done();
 					if (err) {
 						console.error(err);
