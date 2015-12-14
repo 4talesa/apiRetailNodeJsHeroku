@@ -7,10 +7,13 @@ var assert = require('assert');
 // Suport for body variables
 var bodyParser = require('body-parser');
 
+var default_select = 'SELECT p.* FROM product p ';
+var price_select   = 'SELECT p.*, pc.idCategory, c.name nameCategory, ps.price FROM product p left join productStore ps on ps.idProduct = p.id left join productCategory pc on pc.idProduct = p.id left join category c on c.id = pc.idCategory left join store s on s.id = ps.idStore ';
+
 exports.getAll = function (req, res, next) {
 	
 	pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-		client.query('SELECT * FROM product', function(err, result) {
+		client.query(default_select, function(err, result) {
 			done();
 			if (err) {
 				console.error(err);
@@ -46,7 +49,7 @@ exports.post = function (req, res, next) {
 exports.getOne = function (req, res, next) {
 	
 	pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-		client.query('SELECT * FROM product where id = $1',[req.params.id], function(err, result) {
+		client.query(default_select+' where p.id = $1',[req.params.id], function(err, result) {
 			done();
 			if (err) {
 				console.error(err);
@@ -120,7 +123,7 @@ exports.put = function (req, res, next) {
 exports.getByCategory = function (req, res, next) {
 	
 	pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-		client.query('SELECT p.* FROM product p where exists (select pc.idproduct from productcategory pc where pc.idproduct = p.id and pc.idcategory = $1)',[req.params.id], function(err, result) {
+		client.query(price_select+' where pc.idCategory = $id and ps.idStore = $2',[req.params.idCategory,req.params.idStore], function(err, result) {
 			done();
 			if (err) {
 				console.error(err);

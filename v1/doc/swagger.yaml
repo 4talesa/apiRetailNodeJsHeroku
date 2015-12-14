@@ -348,9 +348,14 @@ paths:
           description: Unexpected error
           schema:
             $ref: '#/definitions/Error'
-  /Product/Category/{id}:
+  /Product/Category/{idCategory}/{idStore}:
     parameters:
-      - name: id
+      - name: idCategory
+        in: path
+        type: string
+        required: true
+        description: Unique customer identifier to be used for experience customization.
+      - name: idStore
         in: path
         type: string
         required: true
@@ -1552,6 +1557,16 @@ definitions:
       unit:
         type: string
         description: Unit
+      price:
+        type: number
+        format: double
+        description: Price
+      idCategory:
+        type: string
+        description: Category id
+      nameCategory:
+        type: string
+        description: Category
       postDate:
         type: string
         format: date-time
