@@ -17,7 +17,7 @@ exports.getAll = function (req, res, next) {
 			done();
 			if (err) {
 				console.error(err);
-				response.send("Error " + err);
+				res.send("Error " + err);
 			}else{
 				res.writeHead(200, { 'Content-Type': 'application/json' });
 				console.log( result.rows );
@@ -35,7 +35,7 @@ exports.post = function (req, res, next) {
 			done();
 			if (err) {
 				console.error(err);
-				response.send("Error " + err);
+				res.send("Error " + err);
 			}else{
 				res.writeHead(200, { 'Content-Type': 'application/json' });
 				console.log( result.rows );
@@ -53,7 +53,7 @@ exports.getOne = function (req, res, next) {
 			done();
 			if (err) {
 				console.error(err);
-				response.send("Error " + err);
+				res.send("Error " + err);
 			}else{
 				res.writeHead(200, { 'Content-Type': 'application/json' });
 				console.log( result.rows );
@@ -71,14 +71,14 @@ exports.delete = function (req, res, next) {
 			done();
 			if (err) {
 				console.error(err);
-				response.send("Error " + err);
+				res.send("Error " + err);
 			}else{
 				var userFound = result.rows;
 				client.query('delete FROM product where id = $1',[req.params.id], function(err, result) {
 					done();
 					if (err) {
 						console.error(err);
-						response.send("Error " + err);
+						res.send("Error " + err);
 					}else{
 						res.writeHead(200, { 'Content-Type': 'application/json' });
 						console.log( userFound );
@@ -98,14 +98,14 @@ exports.put = function (req, res, next) {
 			done();
 			if (err) {
 				console.error(err);
-				response.send("Error " + err);
+				res.send("Error " + err);
 			}else{
 				var userFound = result.rows;
 				client.query('update product set name=$2, pictureUrl=$3, detail=$4, unit=$5, postDate = coalesce(postDate,now()), putDate = now(), deleteDate = deleteDate where id = $1',[req.body.id,req.body.name,req.body.pictureUrl,req.body.detail,req.body.unit], function(err, result) {
 					done();
 					if (err) {
 						console.error(err);
-						response.send("Error " + err);
+						res.send("Error " + err);
 					}else{
 						res.writeHead(200, { 'Content-Type': 'application/json' });
 						console.log( userFound );
@@ -123,11 +123,11 @@ exports.put = function (req, res, next) {
 exports.getByCategory = function (req, res, next) {
 	
 	pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-		client.query(price_select+' where pc.idCategory = $id and ps.idStore = $2',[req.params.idCategory,req.params.idStore], function(err, result) {
+		client.query(price_select+' where pc.idCategory = $1 and ps.idStore = $2',[req.params.idCategory,req.params.idStore], function(err, result) {
 			done();
 			if (err) {
 				console.error(err);
-				response.send("Error " + err);
+				res.send("Error " + err);
 			}else{
 				res.writeHead(200, { 'Content-Type': 'application/json' });
 				console.log( result.rows );

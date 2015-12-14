@@ -16,7 +16,7 @@ exports.getAll = function (req, res, next) {
 			done();
 			if (err) {
 				console.error(err);
-				response.send("Error " + err);
+				res.send("Error " + err);
 			}else{
 				res.writeHead(200, { 'Content-Type': 'application/json' });
 				console.log( result.rows );
@@ -34,7 +34,7 @@ exports.post = function (req, res, next) {
 			done();
 			if (err) {
 				console.error(err);
-				response.send("Error " + err);
+				res.send("Error " + err);
 			}else{
 				res.writeHead(200, { 'Content-Type': 'application/json' });
 				console.log( result.rows );
@@ -52,7 +52,7 @@ exports.getOne = function (req, res, next) {
 			done();
 			if (err) {
 				console.error(err);
-				response.send("Error " + err);
+				res.send("Error " + err);
 			}else{
 				res.writeHead(200, { 'Content-Type': 'application/json' });
 				console.log( result.rows );
@@ -70,14 +70,14 @@ exports.delete = function (req, res, next) {
 			done();
 			if (err) {
 				console.error(err);
-				response.send("Error " + err);
+				res.send("Error " + err);
 			}else{
 				var userFound = result.rows;
 				client.query('delete FROM purchase where id = $1',[req.params.id], function(err, result) {
 					done();
 					if (err) {
 						console.error(err);
-						response.send("Error " + err);
+						res.send("Error " + err);
 					}else{
 						res.writeHead(200, { 'Content-Type': 'application/json' });
 						console.log( userFound );
@@ -97,14 +97,14 @@ exports.put = function (req, res, next) {
 			done();
 			if (err) {
 				console.error(err);
-				response.send("Error " + err);
+				res.send("Error " + err);
 			}else{
 				var userFound = result.rows;
 				client.query('update purchase set idStore=$2, idUser=$3, status=$4, idPaymentMethod=$5, postDate = coalesce(postDate,now()), putDate = now(), deleteDate = deleteDate where id = $1',[req.body.id,req.body.idStore,req.body.idUser,req.body.status,req.body.idPaymentMethod], function(err, result) {
 					done();
 					if (err) {
 						console.error(err);
-						response.send("Error " + err);
+						res.send("Error " + err);
 					}else{
 						res.writeHead(200, { 'Content-Type': 'application/json' });
 						console.log( userFound );
@@ -126,7 +126,7 @@ exports.getByUser = function (req, res, next) {
 			done();
 			if (err) {
 				console.error(err);
-				response.send("Error " + err);
+				res.send("Error " + err);
 			}else{
 				res.writeHead(200, { 'Content-Type': 'application/json' });
 				console.log( result.rows );

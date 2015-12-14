@@ -14,7 +14,7 @@ exports.getAll = function (req, res, next) {
 			done();
 			if (err) {
 				console.error(err);
-				response.send("Error " + err);
+				res.send("Error " + err);
 			}else{
 				res.writeHead(200, { 'Content-Type': 'application/json' });
 				console.log( result.rows );
@@ -32,7 +32,7 @@ exports.post = function (req, res, next) {
 			done();
 			if (err) {
 				console.error(err);
-				response.send("Error " + err);
+				res.send("Error " + err);
 			}else{
 				res.writeHead(200, { 'Content-Type': 'application/json' });
 				console.log( result.rows );
@@ -50,7 +50,7 @@ exports.getOne = function (req, res, next) {
 			done();
 			if (err) {
 				console.error(err);
-				response.send("Error " + err);
+				res.send("Error " + err);
 			}else{
 				res.writeHead(200, { 'Content-Type': 'application/json' });
 				console.log( result.rows );
@@ -68,14 +68,14 @@ exports.delete = function (req, res, next) {
 			done();
 			if (err) {
 				console.error(err);
-				response.send("Error " + err);
+				res.send("Error " + err);
 			}else{
 				var userFound = result.rows;
 				client.query('delete FROM productStore where id = $1',[req.params.id], function(err, result) {
 					done();
 					if (err) {
 						console.error(err);
-						response.send("Error " + err);
+						res.send("Error " + err);
 					}else{
 						res.writeHead(200, { 'Content-Type': 'application/json' });
 						console.log( userFound );
@@ -95,14 +95,14 @@ exports.put = function (req, res, next) {
 			done();
 			if (err) {
 				console.error(err);
-				response.send("Error " + err);
+				res.send("Error " + err);
 			}else{
 				var userFound = result.rows;
 				client.query('update productStore set idProduct=$2, idStore=$3, price=$4, postDate = coalesce(postDate,now()), putDate = now(), deleteDate = deleteDate where id = $1',[req.body.id,req.body.idProduct,req.body.idStore,req.body.price], function(err, result) {
 					done();
 					if (err) {
 						console.error(err);
-						response.send("Error " + err);
+						res.send("Error " + err);
 					}else{
 						res.writeHead(200, { 'Content-Type': 'application/json' });
 						console.log( userFound );
