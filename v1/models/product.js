@@ -8,7 +8,6 @@ var assert = require('assert');
 var bodyParser = require('body-parser');
 
 var default_select = 'SELECT p.*, pc.idCategory, c.name nameCategory, ps.price FROM product p left join productStore ps on ps.idProduct = p.id left join productCategory pc on pc.idProduct = p.id left join category c on c.id = pc.idCategory left join store s on s.id = ps.idStore ';
-var price_select   = 'SELECT p.*, pc.idCategory, c.name nameCategory, ps.price FROM product p left join productStore ps on ps.idProduct = p.id left join productCategory pc on pc.idProduct = p.id left join category c on c.id = pc.idCategory left join store s on s.id = ps.idStore ';
 
 exports.getAll = function (req, res, next) {
 	
@@ -123,7 +122,25 @@ exports.put = function (req, res, next) {
 exports.getByCategory = function (req, res, next) {
 	
 	pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-		client.query(price_select+' where pc.idCategory = $1 and ps.idStore = $2',[req.params.idCategory,req.params.idStore], function(err, result) {
+		client.query(default_select+' where pc.idCategory = $1 and ps.idStore = $2',[req.params.idCategory,req.params.idStore], function(err, result) {
+			done();
+			if (err) {
+				console.error(err);
+				res.send("Error " + err);
+			}else{
+				res.writeHead(200, { 'Content-Type': 'application/json' });
+				console.log( result.rows );
+				res.write(JSON.stringify(result.rows));
+				res.end();
+			}
+		});
+	});
+};
+
+exports.getOneByStore = function (req, res, next) {
+	
+	pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+		client.query(default_select+' where p.id = $1 and ps.idStore = $2',[req.params.id,req.params.idStore], function(err, result) {
 			done();
 			if (err) {
 				console.error(err);
