@@ -117,20 +117,20 @@
             }
         },
         "/User/{id}": {
-            "parameters": [
-                {
-                    "name": "id",
-                    "in": "path",
-                    "type": "string",
-                    "required": true,
-                    "description": "Unique customer identifier to be used for experience customization."
-                }
-            ],
             "get": {
                 "summary": "Get User by id",
                 "description": "Return a unique user by id.",
                 "tags": [
                     "Users"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "required": true,
+                        "description": "Unique customer identifier to be used for experience customization."
+                    }
                 ],
                 "responses": {
                     "200": {
@@ -155,6 +155,15 @@
                 "description": "Delete a unique user by id.",
                 "tags": [
                     "Users"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "required": true,
+                        "description": "Unique customer identifier to be used for experience customization."
+                    }
                 ],
                 "responses": {
                     "200": {
