@@ -7,10 +7,12 @@ var assert = require('assert');
 // Suport for body variables
 var bodyParser = require('body-parser');
 
+var default_select = 'SELECT bs.*, s.name nameStore, s.address addressStore FROM beaconStore bs left join store s on s.id = bs.idStore ';
+
 exports.getAll = function (req, res, next) {
 	
 	pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-		client.query('SELECT * FROM beaconStore', function(err, result) {
+		client.query(default_select, function(err, result) {
 			done();
 			if (err) {
 				console.error(err);
@@ -46,7 +48,7 @@ exports.post = function (req, res, next) {
 exports.getOne = function (req, res, next) {
 	
 	pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-		client.query('SELECT * FROM beaconStore where id = $1',[req.params.id], function(err, result) {
+		client.query(default_select+' where bs.id = $1',[req.params.id], function(err, result) {
 			done();
 			if (err) {
 				console.error(err);

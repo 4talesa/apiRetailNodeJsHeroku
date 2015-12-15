@@ -216,7 +216,6 @@ select p.*, s.name nameStore, s.address addressStore, (select sum(pi.amountPurch
 SELECT pi.*, p.name description, p.unit, (pi.amountPurchased * pi.unitPrice) totalItem, p.pictureUrl FROM purchaseItem pi inner join product p on pi.idproduct = p.id 
 
 SELECT p.*, pc.idCategory, c.name nameCategory, ps.price FROM product p left join productStore ps on ps.idProduct = p.id left join productCategory pc on pc.idProduct = p.id left join category c on c.id = pc.idCategory left join store s on s.id = ps.idStore
-where pc.idCategory = '1' and ps.idStore = '1'
 
 select * from productStore;
 INSERT INTO productStore (id, idProduct, idStore, price)
@@ -229,3 +228,25 @@ select * from productcategory;
 delete from productcategory where idproduct is null;
 
 update product set unit = 'each';
+
+
+update category set name = 'bebida', pictureUrl = 'http://lorempixel.com/175/225/food/Category/' where id = '1';
+update category set name = 'carne', pictureUrl = 'http://lorempixel.com/175/225/food/Category/' where id = '2';
+update category set name = 'aperitivo', pictureUrl = 'http://lorempixel.com/175/225/food/Category/' where id = '3';
+update category set name = 'iguarias', pictureUrl = 'http://lorempixel.com/175/225/food/Category/' where id = '4';
+
+update product set pictureUrl = 'http://lorempixel.com/175/225/food/Product/';
+
+select * from product;
+
+update product set name = c.name||' #'||p._id, detail = c.name||' more info etc'
+from product p
+inner join productCategory pc on pc.idProduct = p.id
+inner join category c on c.id = pc.idCategory
+where p._id = product._id;
+
+SELECT bs.*, s.name nameStore FROM beaconStore bs left join store s on s.id = bs.idStore
+
+
+
+
