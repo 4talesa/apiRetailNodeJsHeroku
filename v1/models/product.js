@@ -7,7 +7,7 @@ var assert = require('assert');
 // Suport for body variables
 var bodyParser = require('body-parser');
 
-var default_select = 'SELECT p.* FROM product p ';
+var default_select = 'SELECT p.*, pc.idCategory, c.name nameCategory, ps.price FROM product p left join productStore ps on ps.idProduct = p.id left join productCategory pc on pc.idProduct = p.id left join category c on c.id = pc.idCategory left join store s on s.id = ps.idStore ';
 var price_select   = 'SELECT p.*, pc.idCategory, c.name nameCategory, ps.price FROM product p left join productStore ps on ps.idProduct = p.id left join productCategory pc on pc.idProduct = p.id left join category c on c.id = pc.idCategory left join store s on s.id = ps.idStore ';
 
 exports.getAll = function (req, res, next) {

@@ -118,6 +118,8 @@ CREATE SEQUENCE purchaseItem_id_seq
 
 ALTER TABLE purchaseItem ALTER COLUMN _id SET DEFAULT NEXTVAL('purchaseItem_id_seq');
 
+ALTER TABLE purchaseItem ADD COLUMN unitPrice numeric;
+
 create table paymentMethod (_id integer, id text, name text, pictureUrl text, detail text, postDate timestamp with time zone, putDate timestamp with time zone, deleteDate timestamp with time zone);
 
 CREATE SEQUENCE paymentMethod_id_seq
@@ -173,6 +175,17 @@ CREATE SEQUENCE api_log_id_seq
 
 ALTER TABLE api_log ALTER COLUMN _id SET DEFAULT NEXTVAL('api_log_id_seq');
 
+create table beaconStore (_id integer, id text, idStore text, postDate timestamp with time zone, putDate timestamp with time zone, deleteDate timestamp with time zone);
+
+CREATE SEQUENCE beaconStore_id_seq
+    INCREMENT 1
+    MINVALUE 1
+    MAXVALUE 9223372036854775807
+    START 1
+    CACHE 1;
+
+ALTER TABLE beaconStore ALTER COLUMN _id SET DEFAULT NEXTVAL('beaconStore_id_seq');
+
 SELECT * FROM api_log;
 SELECT * FROM token where access_token = '123456' and (current_timestamp < postDate + (expires_in ||' seconds')::interval)
 
@@ -198,6 +211,19 @@ update category set name = 'category_'||_id, pictureUrl = 'pictureUrl_'||_id, de
 
 select * from purchase;
 
+select p.*, s.name nameStore, s.address addressStore, (select sum(pi.amountPurchased * pi.unitPrice) from purchaseItem pi where pi.idPurchase = p.id) totalAmount, (select sum(pi.amountPurchased) from purchaseItem pi where pi.idPurchase = p.id) totalQuantity from purchase p inner join store s on s.id = p.idStore
+
+SELECT pi.*, p.name description, p.unit, (pi.amountPurchased * pi.unitPrice) totalItem, p.pictureUrl FROM purchaseItem pi inner join product p on pi.idproduct = p.id 
+
+SELECT p.*, pc.idCategory, c.name nameCategory, ps.price FROM product p left join productStore ps on ps.idProduct = p.id left join productCategory pc on pc.idProduct = p.id left join category c on c.id = pc.idCategory left join store s on s.id = ps.idStore
+where pc.idCategory = '1' and ps.idStore = '1'
+
+select * from productStore;
+INSERT INTO productStore (id, idProduct, idStore, price)
+    SELECT row_number() OVER () as rnum, p.id, s.id, 5
+    FROM product p
+     inner join store s on s.id <> ''
+     where not exists (select * from productStore pse where pse.idStore = s.id and pse.idProduct = p.id);
 
 select * from productcategory;
 delete from productcategory where idproduct is null;
