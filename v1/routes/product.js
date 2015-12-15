@@ -14,6 +14,6 @@ module.exports = function(router){
 	
 	router.get('/Product/Category/:idCategory/:idStore', product.getByCategory);
 	
-	router.get('/Product/:id/:idSotre', product.getOneByStore);
+	router.get('/Product/:id/:idStore', product.getOneByStore);
 	
 }
