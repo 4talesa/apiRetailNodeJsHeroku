@@ -20,7 +20,7 @@
                     "name": "access_token",
                     "in": "query",
                     "type": "string",
-                    "required": true
+                    "required": false
                 }
             ],
             "get": {
@@ -287,20 +287,20 @@
             }
         },
         "/Store/{id}": {
-            "parameters": [
-                {
-                    "name": "id",
-                    "in": "path",
-                    "type": "string",
-                    "required": true,
-                    "description": "Unique customer identifier to be used for experience customization."
-                }
-            ],
             "get": {
                 "summary": "Get Store by id",
                 "description": "Return a unique Store by id.",
                 "tags": [
                     "Stores"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "required": true,
+                        "description": "Unique customer identifier to be used for experience customization."
+                    }
                 ],
                 "responses": {
                     "200": {
@@ -326,6 +326,15 @@
                 "tags": [
                     "Stores"
                 ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "required": true,
+                        "description": "Unique customer identifier to be used for experience customization."
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "An array of Stores",
@@ -346,20 +355,20 @@
             }
         },
         "/Store/PostalCode/{id}": {
-            "parameters": [
-                {
-                    "name": "id",
-                    "in": "path",
-                    "type": "string",
-                    "required": true,
-                    "description": "Unique customer identifier to be used for experience customization."
-                }
-            ],
             "get": {
                 "summary": "Get Store by postalCode",
                 "description": "Return a list of Stores by postalCode.",
                 "tags": [
                     "Stores"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "required": true,
+                        "description": "Unique customer identifier to be used for experience customization."
+                    }
                 ],
                 "responses": {
                     "200": {
@@ -483,20 +492,20 @@
             }
         },
         "/Product/{id}": {
-            "parameters": [
-                {
-                    "name": "id",
-                    "in": "path",
-                    "type": "string",
-                    "required": true,
-                    "description": "Unique customer identifier to be used for experience customization."
-                }
-            ],
             "get": {
                 "summary": "Get Product by id",
                 "description": "Return a unique Product by id.",
                 "tags": [
                     "Products"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "required": true,
+                        "description": "Unique customer identifier to be used for experience customization."
+                    }
                 ],
                 "responses": {
                     "200": {
@@ -522,6 +531,15 @@
                 "tags": [
                     "Products"
                 ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "required": true,
+                        "description": "Unique customer identifier to be used for experience customization."
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "An array of Products",
@@ -542,27 +560,27 @@
             }
         },
         "/Product/Category/{idCategory}/{idStore}": {
-            "parameters": [
-                {
-                    "name": "idCategory",
-                    "in": "path",
-                    "type": "string",
-                    "required": true,
-                    "description": "Unique customer identifier to be used for experience customization."
-                },
-                {
-                    "name": "idStore",
-                    "in": "path",
-                    "type": "string",
-                    "required": true,
-                    "description": "Unique customer identifier to be used for experience customization."
-                }
-            ],
             "get": {
                 "summary": "Get Product by Category id",
                 "description": "Return a list of Product by Category id.",
                 "tags": [
                     "Products"
+                ],
+                "parameters": [
+                    {
+                        "name": "idCategory",
+                        "in": "path",
+                        "type": "string",
+                        "required": true,
+                        "description": "Unique customer identifier to be used for experience customization."
+                    },
+                    {
+                        "name": "idStore",
+                        "in": "path",
+                        "type": "string",
+                        "required": true,
+                        "description": "Unique customer identifier to be used for experience customization."
+                    }
                 ],
                 "responses": {
                     "200": {
@@ -686,20 +704,20 @@
             }
         },
         "/Category/{id}": {
-            "parameters": [
-                {
-                    "name": "id",
-                    "in": "path",
-                    "type": "string",
-                    "required": true,
-                    "description": "Unique customer identifier to be used for experience customization."
-                }
-            ],
             "get": {
                 "summary": "Get Category by id",
                 "description": "Return a unique Category by id.",
                 "tags": [
                     "Categories"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "required": true,
+                        "description": "Unique customer identifier to be used for experience customization."
+                    }
                 ],
                 "responses": {
                     "200": {
@@ -724,6 +742,15 @@
                 "description": "Delete a unique Category by id.",
                 "tags": [
                     "Categories"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "required": true,
+                        "description": "Unique customer identifier to be used for experience customization."
+                    }
                 ],
                 "responses": {
                     "200": {
@@ -847,20 +874,20 @@
             }
         },
         "/ProductStore/{id}": {
-            "parameters": [
-                {
-                    "name": "id",
-                    "in": "path",
-                    "type": "string",
-                    "required": true,
-                    "description": "Unique customer identifier to be used for experience customization."
-                }
-            ],
             "get": {
                 "summary": "Get ProductStore by id",
                 "description": "Return a unique ProductStore by id.",
                 "tags": [
                     "ProductStores"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "required": true,
+                        "description": "Unique customer identifier to be used for experience customization."
+                    }
                 ],
                 "responses": {
                     "200": {
@@ -885,6 +912,15 @@
                 "description": "Delete a unique ProductStore by id.",
                 "tags": [
                     "ProductStores"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "required": true,
+                        "description": "Unique customer identifier to be used for experience customization."
+                    }
                 ],
                 "responses": {
                     "200": {
@@ -1008,20 +1044,20 @@
             }
         },
         "/ProductCategory/{id}": {
-            "parameters": [
-                {
-                    "name": "id",
-                    "in": "path",
-                    "type": "string",
-                    "required": true,
-                    "description": "Unique customer identifier to be used for experience customization."
-                }
-            ],
             "get": {
                 "summary": "Get ProductCategory by id",
                 "description": "Return a unique ProductCategory by id.",
                 "tags": [
                     "ProductCategorys"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "required": true,
+                        "description": "Unique customer identifier to be used for experience customization."
+                    }
                 ],
                 "responses": {
                     "200": {
@@ -1046,6 +1082,15 @@
                 "description": "Delete a unique ProductCategory by id.",
                 "tags": [
                     "ProductCategorys"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "required": true,
+                        "description": "Unique customer identifier to be used for experience customization."
+                    }
                 ],
                 "responses": {
                     "200": {
@@ -1169,20 +1214,20 @@
             }
         },
         "/ShoppingCart/{id}": {
-            "parameters": [
-                {
-                    "name": "id",
-                    "in": "path",
-                    "type": "string",
-                    "required": true,
-                    "description": "Unique customer identifier to be used for experience customization."
-                }
-            ],
             "get": {
                 "summary": "Get ShoppingCart by id",
                 "description": "Return a unique ShoppingCart by id.",
                 "tags": [
                     "ShoppingCarts"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "required": true,
+                        "description": "Unique customer identifier to be used for experience customization."
+                    }
                 ],
                 "responses": {
                     "200": {
@@ -1207,6 +1252,15 @@
                 "description": "Delete a unique ShoppingCart by id.",
                 "tags": [
                     "ShoppingCarts"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "required": true,
+                        "description": "Unique customer identifier to be used for experience customization."
+                    }
                 ],
                 "responses": {
                     "200": {
@@ -1330,20 +1384,20 @@
             }
         },
         "/ShoppingCartItem/{id}": {
-            "parameters": [
-                {
-                    "name": "id",
-                    "in": "path",
-                    "type": "string",
-                    "required": true,
-                    "description": "Unique customer identifier to be used for experience customization."
-                }
-            ],
             "get": {
                 "summary": "Get ShoppingCartItem by id",
                 "description": "Return a unique ShoppingCartItem by id.",
                 "tags": [
                     "ShoppingCartItems"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "required": true,
+                        "description": "Unique customer identifier to be used for experience customization."
+                    }
                 ],
                 "responses": {
                     "200": {
@@ -1368,6 +1422,15 @@
                 "description": "Delete a unique ShoppingCartItem by id.",
                 "tags": [
                     "ShoppingCartItems"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "required": true,
+                        "description": "Unique customer identifier to be used for experience customization."
+                    }
                 ],
                 "responses": {
                     "200": {
@@ -1491,20 +1554,20 @@
             }
         },
         "/Purchase/{id}": {
-            "parameters": [
-                {
-                    "name": "id",
-                    "in": "path",
-                    "type": "string",
-                    "required": true,
-                    "description": "Unique customer identifier to be used for experience customization."
-                }
-            ],
             "get": {
                 "summary": "Get Purchase by id",
                 "description": "Return a unique Purchase by id.",
                 "tags": [
                     "Purchases"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "required": true,
+                        "description": "Unique customer identifier to be used for experience customization."
+                    }
                 ],
                 "responses": {
                     "200": {
@@ -1530,6 +1593,15 @@
                 "tags": [
                     "Purchases"
                 ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "required": true,
+                        "description": "Unique customer identifier to be used for experience customization."
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "An array of Purchases",
@@ -1550,20 +1622,20 @@
             }
         },
         "/Purchase/User/{id}": {
-            "parameters": [
-                {
-                    "name": "id",
-                    "in": "path",
-                    "type": "string",
-                    "required": true,
-                    "description": "Unique customer identifier to be used for experience customization."
-                }
-            ],
             "get": {
                 "summary": "Get Purchase list by User id",
                 "description": "Return a list Purchase by User id.",
                 "tags": [
                     "Purchases"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "required": true,
+                        "description": "Unique customer identifier to be used for experience customization."
+                    }
                 ],
                 "responses": {
                     "200": {
@@ -1687,20 +1759,20 @@
             }
         },
         "/PurchaseItem/{id}": {
-            "parameters": [
-                {
-                    "name": "id",
-                    "in": "path",
-                    "type": "string",
-                    "required": true,
-                    "description": "Unique customer identifier to be used for experience customization."
-                }
-            ],
             "get": {
                 "summary": "Get PurchaseItem by id",
                 "description": "Return a unique PurchaseItem by id.",
                 "tags": [
                     "PurchaseItems"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "required": true,
+                        "description": "Unique customer identifier to be used for experience customization."
+                    }
                 ],
                 "responses": {
                     "200": {
@@ -1726,6 +1798,15 @@
                 "tags": [
                     "PurchaseItems"
                 ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "required": true,
+                        "description": "Unique customer identifier to be used for experience customization."
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "An array of PurchaseItems",
@@ -1746,20 +1827,20 @@
             }
         },
         "/PurchaseItem/Purchase/{id}": {
-            "parameters": [
-                {
-                    "name": "id",
-                    "in": "path",
-                    "type": "string",
-                    "required": true,
-                    "description": "Unique customer identifier to be used for experience customization."
-                }
-            ],
             "get": {
                 "summary": "Get PurchaseItem by Purchase id",
                 "description": "Return a list PurchaseItem by id.",
                 "tags": [
                     "PurchaseItems"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "required": true,
+                        "description": "Unique customer identifier to be used for experience customization."
+                    }
                 ],
                 "responses": {
                     "200": {
@@ -1883,20 +1964,20 @@
             }
         },
         "/PaymentMethod/{id}": {
-            "parameters": [
-                {
-                    "name": "id",
-                    "in": "path",
-                    "type": "string",
-                    "required": true,
-                    "description": "Unique customer identifier to be used for experience customization."
-                }
-            ],
             "get": {
                 "summary": "Get PaymentMethod by id",
                 "description": "Return a unique PaymentMethod by id.",
                 "tags": [
                     "PaymentMethods"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "required": true,
+                        "description": "Unique customer identifier to be used for experience customization."
+                    }
                 ],
                 "responses": {
                     "200": {
@@ -1921,6 +2002,15 @@
                 "description": "Delete a unique PaymentMethod by id.",
                 "tags": [
                     "PaymentMethods"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "required": true,
+                        "description": "Unique customer identifier to be used for experience customization."
+                    }
                 ],
                 "responses": {
                     "200": {
@@ -2044,20 +2134,20 @@
             }
         },
         "/Reward/{id}": {
-            "parameters": [
-                {
-                    "name": "id",
-                    "in": "path",
-                    "type": "string",
-                    "required": true,
-                    "description": "Unique customer identifier to be used for experience customization."
-                }
-            ],
             "get": {
                 "summary": "Get Reward by id",
                 "description": "Return a unique Reward by id.",
                 "tags": [
                     "Rewards"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "required": true,
+                        "description": "Unique customer identifier to be used for experience customization."
+                    }
                 ],
                 "responses": {
                     "200": {
@@ -2082,6 +2172,15 @@
                 "description": "Delete a unique Reward by id.",
                 "tags": [
                     "Rewards"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "required": true,
+                        "description": "Unique customer identifier to be used for experience customization."
+                    }
                 ],
                 "responses": {
                     "200": {
@@ -2205,20 +2304,20 @@
             }
         },
         "/BeaconStore/{id}": {
-            "parameters": [
-                {
-                    "name": "id",
-                    "in": "path",
-                    "type": "string",
-                    "required": true,
-                    "description": "Unique customer identifier to be used for experience customization."
-                }
-            ],
             "get": {
                 "summary": "Get BeaconStore by id",
                 "description": "Return a unique BeaconStore by id.",
                 "tags": [
                     "BeaconStores"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "required": true,
+                        "description": "Unique customer identifier to be used for experience customization."
+                    }
                 ],
                 "responses": {
                     "200": {
@@ -2243,6 +2342,15 @@
                 "description": "Delete a unique BeaconStore by id.",
                 "tags": [
                     "ProductStores"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "required": true,
+                        "description": "Unique customer identifier to be used for experience customization."
+                    }
                 ],
                 "responses": {
                     "200": {

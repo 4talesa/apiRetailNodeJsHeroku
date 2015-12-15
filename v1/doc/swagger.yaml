@@ -15,7 +15,7 @@ paths:
         - name: access_token
           in: query
           type: string
-          required: true
+          required: false
     get:
       summary: User List
       description: The List of Users of our system.
@@ -188,17 +188,17 @@ paths:
           schema:
             $ref: '#/definitions/Error'            
   /Store/{id}:
-    parameters:
-      - name: id
-        in: path
-        type: string
-        required: true
-        description: Unique customer identifier to be used for experience customization.
     get:
       summary: Get Store by id
       description: Return a unique Store by id.
       tags:
         - Stores
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Unique customer identifier to be used for experience customization.
       responses:
         '200':
           description: An array of Stores found
@@ -215,6 +215,12 @@ paths:
       description: Delete a unique Store by id.
       tags:
         - Stores
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Unique customer identifier to be used for experience customization.
       responses:
         '200':
           description: An array of Stores
@@ -227,17 +233,17 @@ paths:
           schema:
             $ref: '#/definitions/Error'
   /Store/PostalCode/{id}:
-    parameters:
-      - name: id
-        in: path
-        type: string
-        required: true
-        description: Unique customer identifier to be used for experience customization.
     get:
       summary: Get Store by postalCode
       description: Return a list of Stores by postalCode.
       tags:
         - Stores
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Unique customer identifier to be used for experience customization.
       responses:
         '200':
           description: An array of Stores found
@@ -316,17 +322,17 @@ paths:
           schema:
             $ref: '#/definitions/Error'            
   /Product/{id}:
-    parameters:
-      - name: id
-        in: path
-        type: string
-        required: true
-        description: Unique customer identifier to be used for experience customization.
     get:
       summary: Get Product by id
       description: Return a unique Product by id.
       tags:
         - Products
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Unique customer identifier to be used for experience customization.
       responses:
         '200':
           description: An array of Products found
@@ -343,6 +349,12 @@ paths:
       description: Delete a unique Product by id.
       tags:
         - Products
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Unique customer identifier to be used for experience customization.
       responses:
         '200':
           description: An array of Products
@@ -355,22 +367,22 @@ paths:
           schema:
             $ref: '#/definitions/Error'
   /Product/Category/{idCategory}/{idStore}:
-    parameters:
-      - name: idCategory
-        in: path
-        type: string
-        required: true
-        description: Unique customer identifier to be used for experience customization.
-      - name: idStore
-        in: path
-        type: string
-        required: true
-        description: Unique customer identifier to be used for experience customization.
     get:
       summary: Get Product by Category id
       description: Return a list of Product by Category id.
       tags:
         - Products
+      parameters:
+        - name: idCategory
+          in: path
+          type: string
+          required: true
+          description: Unique customer identifier to be used for experience customization.
+        - name: idStore
+          in: path
+          type: string
+          required: true
+          description: Unique customer identifier to be used for experience customization.
       responses:
         '200':
           description: An array of Products found
@@ -449,17 +461,17 @@ paths:
           schema:
             $ref: '#/definitions/Error'            
   /Category/{id}:
-    parameters:
-      - name: id
-        in: path
-        type: string
-        required: true
-        description: Unique customer identifier to be used for experience customization.
     get:
       summary: Get Category by id
       description: Return a unique Category by id.
       tags:
         - Categories
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Unique customer identifier to be used for experience customization.
       responses:
         '200':
           description: An array of Categories found
@@ -476,6 +488,12 @@ paths:
       description: Delete a unique Category by id.
       tags:
         - Categories
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Unique customer identifier to be used for experience customization.
       responses:
         '200':
           description: An array of Categories
@@ -554,17 +572,17 @@ paths:
           schema:
             $ref: '#/definitions/Error'            
   /ProductStore/{id}:
-    parameters:
-      - name: id
-        in: path
-        type: string
-        required: true
-        description: Unique customer identifier to be used for experience customization.
     get:
       summary: Get ProductStore by id
       description: Return a unique ProductStore by id.
       tags:
         - ProductStores
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Unique customer identifier to be used for experience customization.
       responses:
         '200':
           description: An array of ProductStores found
@@ -581,6 +599,12 @@ paths:
       description: Delete a unique ProductStore by id.
       tags:
         - ProductStores
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Unique customer identifier to be used for experience customization.
       responses:
         '200':
           description: An array of ProductStores
@@ -659,17 +683,17 @@ paths:
           schema:
             $ref: '#/definitions/Error'            
   /ProductCategory/{id}:
-    parameters:
-      - name: id
-        in: path
-        type: string
-        required: true
-        description: Unique customer identifier to be used for experience customization.
     get:
       summary: Get ProductCategory by id
       description: Return a unique ProductCategory by id.
       tags:
         - ProductCategorys
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Unique customer identifier to be used for experience customization.
       responses:
         '200':
           description: An array of ProductCategorys found
@@ -686,6 +710,12 @@ paths:
       description: Delete a unique ProductCategory by id.
       tags:
         - ProductCategorys
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Unique customer identifier to be used for experience customization.
       responses:
         '200':
           description: An array of ProductCategorys
@@ -764,17 +794,17 @@ paths:
           schema:
             $ref: '#/definitions/Error'            
   /ShoppingCart/{id}:
-    parameters:
-      - name: id
-        in: path
-        type: string
-        required: true
-        description: Unique customer identifier to be used for experience customization.
     get:
       summary: Get ShoppingCart by id
       description: Return a unique ShoppingCart by id.
       tags:
         - ShoppingCarts
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Unique customer identifier to be used for experience customization.
       responses:
         '200':
           description: An array of ShoppingCarts found
@@ -791,6 +821,12 @@ paths:
       description: Delete a unique ShoppingCart by id.
       tags:
         - ShoppingCarts
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Unique customer identifier to be used for experience customization.
       responses:
         '200':
           description: An array of ShoppingCarts
@@ -869,17 +905,17 @@ paths:
           schema:
             $ref: '#/definitions/Error'            
   /ShoppingCartItem/{id}:
-    parameters:
-      - name: id
-        in: path
-        type: string
-        required: true
-        description: Unique customer identifier to be used for experience customization.
     get:
       summary: Get ShoppingCartItem by id
       description: Return a unique ShoppingCartItem by id.
       tags:
         - ShoppingCartItems
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Unique customer identifier to be used for experience customization.
       responses:
         '200':
           description: An array of ShoppingCartItems found
@@ -896,6 +932,12 @@ paths:
       description: Delete a unique ShoppingCartItem by id.
       tags:
         - ShoppingCartItems
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Unique customer identifier to be used for experience customization.
       responses:
         '200':
           description: An array of ShoppingCartItems
@@ -974,17 +1016,17 @@ paths:
           schema:
             $ref: '#/definitions/Error'            
   /Purchase/{id}:
-    parameters:
-      - name: id
-        in: path
-        type: string
-        required: true
-        description: Unique customer identifier to be used for experience customization.
     get:
       summary: Get Purchase by id
       description: Return a unique Purchase by id.
       tags:
         - Purchases
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Unique customer identifier to be used for experience customization.
       responses:
         '200':
           description: An array of Purchases found
@@ -1001,6 +1043,12 @@ paths:
       description: Delete a unique Purchase by id.
       tags:
         - Purchases
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Unique customer identifier to be used for experience customization.
       responses:
         '200':
           description: An array of Purchases
@@ -1013,17 +1061,17 @@ paths:
           schema:
             $ref: '#/definitions/Error'
   /Purchase/User/{id}:
-    parameters:
-      - name: id
-        in: path
-        type: string
-        required: true
-        description: Unique customer identifier to be used for experience customization.
     get:
       summary: Get Purchase list by User id
       description: Return a list Purchase by User id.
       tags:
         - Purchases
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Unique customer identifier to be used for experience customization.
       responses:
         '200':
           description: An array of Purchases found
@@ -1102,17 +1150,17 @@ paths:
           schema:
             $ref: '#/definitions/Error'            
   /PurchaseItem/{id}:
-    parameters:
-      - name: id
-        in: path
-        type: string
-        required: true
-        description: Unique customer identifier to be used for experience customization.
     get:
       summary: Get PurchaseItem by id
       description: Return a unique PurchaseItem by id.
       tags:
         - PurchaseItems
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Unique customer identifier to be used for experience customization.
       responses:
         '200':
           description: An array of PurchaseItems found
@@ -1129,6 +1177,12 @@ paths:
       description: Delete a unique PurchaseItem by id.
       tags:
         - PurchaseItems
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Unique customer identifier to be used for experience customization.
       responses:
         '200':
           description: An array of PurchaseItems
@@ -1141,17 +1195,17 @@ paths:
           schema:
             $ref: '#/definitions/Error'
   /PurchaseItem/Purchase/{id}:
-    parameters:
-      - name: id
-        in: path
-        type: string
-        required: true
-        description: Unique customer identifier to be used for experience customization.
     get:
       summary: Get PurchaseItem by Purchase id
       description: Return a list PurchaseItem by id.
       tags:
         - PurchaseItems
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Unique customer identifier to be used for experience customization.
       responses:
         '200':
           description: An array of PurchaseItems found
@@ -1230,17 +1284,17 @@ paths:
           schema:
             $ref: '#/definitions/Error'            
   /PaymentMethod/{id}:
-    parameters:
-      - name: id
-        in: path
-        type: string
-        required: true
-        description: Unique customer identifier to be used for experience customization.
     get:
       summary: Get PaymentMethod by id
       description: Return a unique PaymentMethod by id.
       tags:
         - PaymentMethods
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Unique customer identifier to be used for experience customization.
       responses:
         '200':
           description: An array of PaymentMethods found
@@ -1257,6 +1311,12 @@ paths:
       description: Delete a unique PaymentMethod by id.
       tags:
         - PaymentMethods
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Unique customer identifier to be used for experience customization.
       responses:
         '200':
           description: An array of PaymentMethods
@@ -1335,17 +1395,17 @@ paths:
           schema:
             $ref: '#/definitions/Error'            
   /Reward/{id}:
-    parameters:
-      - name: id
-        in: path
-        type: string
-        required: true
-        description: Unique customer identifier to be used for experience customization.
     get:
       summary: Get Reward by id
       description: Return a unique Reward by id.
       tags:
         - Rewards
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Unique customer identifier to be used for experience customization.
       responses:
         '200':
           description: An array of Rewards found
@@ -1362,6 +1422,12 @@ paths:
       description: Delete a unique Reward by id.
       tags:
         - Rewards
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Unique customer identifier to be used for experience customization.
       responses:
         '200':
           description: An array of Rewards
@@ -1440,17 +1506,17 @@ paths:
           schema:
             $ref: '#/definitions/Error'            
   /BeaconStore/{id}:
-    parameters:
-      - name: id
-        in: path
-        type: string
-        required: true
-        description: Unique customer identifier to be used for experience customization.
     get:
       summary: Get BeaconStore by id
       description: Return a unique BeaconStore by id.
       tags:
         - BeaconStores
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Unique customer identifier to be used for experience customization.
       responses:
         '200':
           description: An array of BeaconStores found
@@ -1467,6 +1533,12 @@ paths:
       description: Delete a unique BeaconStore by id.
       tags:
         - ProductStores
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Unique customer identifier to be used for experience customization.
       responses:
         '200':
           description: An array of BeaconStores
