@@ -7,7 +7,7 @@ var assert = require('assert');
 // Suport for body variables
 var bodyParser = require('body-parser');
 
-var default_select = 'SELECT bs.*, s.name nameStore, s.address addressStore FROM beaconStore bs left join store s on s.id = bs.idStore ';
+var default_select = 'SELECT bs.*, s.name nameStore, s.address addressStore, s.pictureUrl pictureUrlStore FROM beaconStore bs left join store s on s.id = bs.idStore ';
 
 exports.getAll = function (req, res, next) {
 	

@@ -1923,6 +1923,9 @@ definitions:
       addressStore:
         type: string
         description: Store address
+      pictureUrlStore:
+        type: string
+        description: Store pictureUrl
       postDate:
         type: string
         format: date-time
