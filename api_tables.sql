@@ -245,7 +245,7 @@ inner join productCategory pc on pc.idProduct = p.id
 inner join category c on c.id = pc.idCategory
 where p._id = product._id;
 
-SELECT bs.*, s.name nameStore FROM beaconStore bs left join store s on s.id = bs.idStore
+SELECT bs.*, s.name nameStore, s.address addressStore FROM beaconStore bs left join store s on s.id = bs.idStore
 
 
 
