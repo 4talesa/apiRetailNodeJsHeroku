@@ -12,4 +12,6 @@ module.exports = function(router){
 
 	router.delete('/ShoppingCart/:id', shoppingCart.delete);
 	
+	router.get('/ShoppingCart/User/:idUser/:idStore', shoppingCart.getByUser);
+	
 }

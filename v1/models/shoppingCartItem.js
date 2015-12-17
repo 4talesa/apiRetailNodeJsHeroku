@@ -7,10 +7,12 @@ var assert = require('assert');
 // Suport for body variables
 var bodyParser = require('body-parser');
 
+var default_select = 'SELECT pi.*, p.name description, p.unit, (pi.amountPurchased * pi.unitPrice) totalItem, p.pictureUrl, \'test\' categoryName, \'test\' brandName FROM shoppingCartItem pi inner join product p on pi.idproduct = p.id ';
+
 exports.getAll = function (req, res, next) {
 	
 	pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-		client.query('SELECT * FROM shoppingCartItem', function(err, result) {
+		client.query(default_select, function(err, result) {
 			done();
 			if (err) {
 				console.error(err);
@@ -46,7 +48,7 @@ exports.post = function (req, res, next) {
 exports.getOne = function (req, res, next) {
 	
 	pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-		client.query('SELECT * FROM shoppingCartItem where id = $1',[req.params.id], function(err, result) {
+		client.query(default_select+' where p.id = $1',[req.params.id], function(err, result) {
 			done();
 			if (err) {
 				console.error(err);
@@ -112,6 +114,24 @@ exports.put = function (req, res, next) {
 						res.end();
 					}
 				});
+			}
+		});
+	});
+};
+
+exports.getByShoppingCart = function (req, res, next) {
+	
+	pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+		client.query(default_select+' where p.idShoppingCart = $1',[req.params.id], function(err, result) {
+			done();
+			if (err) {
+				console.error(err);
+				res.send("Error " + err);
+			}else{
+				res.writeHead(200, { 'Content-Type': 'application/json' });
+				console.log( result.rows );
+				res.write(JSON.stringify(result.rows));
+				res.end();
 			}
 		});
 	});

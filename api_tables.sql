@@ -83,6 +83,8 @@ CREATE SEQUENCE shoppingCart_id_seq
 
 ALTER TABLE shoppingCart ALTER COLUMN _id SET DEFAULT NEXTVAL('shoppingCart_id_seq');
 
+ALTER TABLE shoppingCart ADD COLUMN date timestamp with time zone;
+
 create table shoppingCartItem (_id integer, id text, idShoppingCart text, idProduct text, status text, amountRequested numeric, amountPurchased numeric, postDate timestamp with time zone, putDate timestamp with time zone, deleteDate timestamp with time zone);
 
 CREATE SEQUENCE shoppingCartItem_id_seq
@@ -93,6 +95,8 @@ CREATE SEQUENCE shoppingCartItem_id_seq
     CACHE 1;
 
 ALTER TABLE shoppingCartItem ALTER COLUMN _id SET DEFAULT NEXTVAL('shoppingCartItem_id_seq');
+
+ALTER TABLE shoppingCartItem ADD COLUMN unitPrice numeric;
 
 create table purchase (_id integer, id text, idStore text, idUser text, status text, idPaymentMethod text, postDate timestamp with time zone, putDate timestamp with time zone, deleteDate timestamp with time zone);
 
@@ -248,5 +252,7 @@ where p._id = product._id;
 SELECT bs.*, s.name nameStore, s.address addressStore FROM beaconStore bs left join store s on s.id = bs.idStore
 
 
+select p.*, s.name nameStore, s.address addressStore, (select sum(pi.amountPurchased * pi.unitPrice) from shoppingCartItem pi where pi.idShoppingCart = p.id) totalAmount, (select sum(pi.amountPurchased) from shoppingCartItem pi where pi.idShoppingCart = p.id) totalQuantity from shoppingCart p inner join store s on s.id = p.idStore
 
+SELECT pi.*, p.name description, p.unit, (pi.amountPurchased * pi.unitPrice) totalItem, p.pictureUrl, \'test\' categoryName, \'test\' brandName FROM shoppingCartItem pi inner join product p on pi.idproduct = p.id
 

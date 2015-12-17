@@ -7,10 +7,12 @@ var assert = require('assert');
 // Suport for body variables
 var bodyParser = require('body-parser');
 
+var default_select = 'select p.*, s.name nameStore, s.address addressStore, (select sum(pi.amountPurchased * pi.unitPrice) from shoppingCartItem pi where pi.idShoppingCart = p.id) totalAmount, (select sum(pi.amountPurchased) from shoppingCartItem pi where pi.idShoppingCart = p.id) totalQuantity from shoppingCart p inner join store s on s.id = p.idStore ';
+
 exports.getAll = function (req, res, next) {
 	
 	pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-		client.query('SELECT * FROM shoppingCart', function(err, result) {
+		client.query(default_select, function(err, result) {
 			done();
 			if (err) {
 				console.error(err);
@@ -46,7 +48,7 @@ exports.post = function (req, res, next) {
 exports.getOne = function (req, res, next) {
 	
 	pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-		client.query('SELECT * FROM shoppingCart where id = $1',[req.params.id], function(err, result) {
+		client.query(default_select+' where p.id = $1',[req.params.id], function(err, result) {
 			done();
 			if (err) {
 				console.error(err);
@@ -112,6 +114,40 @@ exports.put = function (req, res, next) {
 						res.end();
 					}
 				});
+			}
+		});
+	});
+};
+
+exports.getByUser = function (req, res, next) {
+	
+	pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+		client.query(default_select+' where p.idUser = $1 and p.idStore = $2',[req.params.idUser,req.params.idStore], function(err, result) {
+			done();
+			if (err) {
+				console.error(err);
+				res.send("Error " + err);
+			}else{
+				if (result.rows.length == 0){
+					console.log('Not found, generate one.');
+					client.query('insert into shoppingCart (id, idStore, idUser, status, idPaymentMethod, postDate, putDate, deleteDate) values ($1,$2,$3,$4,$5,now(),null,null) RETURNING _id, id, idStore, idUser, status, idPaymentMethod, postDate, putDate, deleteDate',[req.params.idUser,req.params.idStore,req.params.idUser,'pending','1'], function(err, result) {
+						done();
+						if (err) {
+							console.error(err);
+							res.send("Error " + err);
+						}else{
+							res.writeHead(200, { 'Content-Type': 'application/json' });
+							console.log( result.rows );
+							res.write(JSON.stringify(result.rows));
+							res.end();
+						}
+					});
+				}else{
+					res.writeHead(200, { 'Content-Type': 'application/json' });
+					console.log( result.rows );
+					res.write(JSON.stringify(result.rows));
+					res.end();
+				}
 			}
 		});
 	});
