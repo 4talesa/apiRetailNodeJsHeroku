@@ -2721,11 +2721,23 @@
                 },
                 "idStore": {
                     "type": "string",
-                    "description": "Store"
+                    "description": "Store id"
+                },
+                "nameStore": {
+                    "type": "string",
+                    "description": "Store Name"
+                },
+                "addressStore": {
+                    "type": "string",
+                    "description": "Store Address"
                 },
                 "idUser": {
                     "type": "string",
-                    "description": "User"
+                    "description": "User id"
+                },
+                "nameUser": {
+                    "type": "string",
+                    "description": "User name"
                 },
                 "status": {
                     "type": "string",
@@ -2734,6 +2746,21 @@
                 "idPaymentMethod": {
                     "type": "string",
                     "description": "Payment Method"
+                },
+                "date": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "Purchase Date"
+                },
+                "totalAmount": {
+                    "type": "number",
+                    "format": "double",
+                    "description": "Total Amount"
+                },
+                "totalQuantity": {
+                    "type": "number",
+                    "format": "double",
+                    "description": "Total Quantity"
                 },
                 "postDate": {
                     "type": "string",
