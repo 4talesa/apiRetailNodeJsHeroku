@@ -254,5 +254,12 @@ SELECT bs.*, s.name nameStore, s.address addressStore FROM beaconStore bs left j
 
 select p.*, s.name nameStore, s.address addressStore, (select sum(pi.amountPurchased * pi.unitPrice) from shoppingCartItem pi where pi.idShoppingCart = p.id) totalAmount, (select sum(pi.amountPurchased) from shoppingCartItem pi where pi.idShoppingCart = p.id) totalQuantity from shoppingCart p inner join store s on s.id = p.idStore
 
-SELECT pi.*, p.name description, p.unit, (pi.amountPurchased * pi.unitPrice) totalItem, p.pictureUrl, \'test\' categoryName, \'test\' brandName FROM shoppingCartItem pi inner join product p on pi.idproduct = p.id
+SELECT pi.*, p.name description, p.unit, (pi.amountPurchased * pi.unitPrice) totalItem, p.pictureUrl, 'test' categoryName, 'test' brandName FROM shoppingCartItem pi inner join product p on pi.idproduct = p.id where pi.idShoppingCart = 'N5mxFWuO4o';
+
+
+select * from shoppingCart
+delete from shoppingCart;
+
+
+
 
