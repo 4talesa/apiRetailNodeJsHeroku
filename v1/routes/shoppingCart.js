@@ -10,7 +10,7 @@ module.exports = function(router){
 
 	router.get('/ShoppingCart/:id', shoppingCart.getOne);
 
-	router.delete('/ShoppingCart/:id', shoppingCart.delete);
+	router.delete('/ShoppingCart/:id', shoppingCart.deleteOne);
 	
 	router.get('/ShoppingCart/User/:idUser/:idStore', shoppingCart.getByUser);
 	
