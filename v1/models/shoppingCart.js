@@ -130,7 +130,7 @@ exports.getByUser = function (req, res, next) {
 			}else{
 				if (result.rows.length == 0){
 					console.log('Not found, generate one.');
-					client.query('insert into shoppingCart (id, idStore, idUser, status, idPaymentMethod, date, postDate, putDate, deleteDate) values ($1,$2,$3,$4,$5,now(),now(),null,null) RETURNING _id, id, idStore, idUser, status, idPaymentMethod, postDate, putDate, deleteDate',[req.params.idUser,req.params.idStore,req.params.idUser,'pending','1'], function(err, result) {
+					client.query('insert into shoppingCart (id, idStore, idUser, status, idPaymentMethod, date, postDate, putDate, deleteDate) values ($1,$2,$3,$4,$5,now(),now(),null,null) RETURNING _id, id, idStore, idUser, status, idPaymentMethod, postDate, putDate, deleteDate',[req.params.idUser+'.'+req.params.idStore,req.params.idStore,req.params.idUser,'pending','1'], function(err, result) {
 						done();
 						if (err) {
 							console.error(err);
