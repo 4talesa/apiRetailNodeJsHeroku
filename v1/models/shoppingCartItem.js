@@ -152,7 +152,7 @@ var deleteOne = function (req, res, next) {
 		console.log(result);
 		if (err){
 			console.error(err);
-			res.end("[]");
+			res.end("[notfound]");
 		}else{
 			deleteItem(req.params, function(result, err){					
 				console.log(result);
@@ -161,8 +161,8 @@ var deleteOne = function (req, res, next) {
 					res.end("[]");
 				}else{
 					res.writeHead(200, { 'Content-Type': 'application/json' });
-					console.log( result.rows );
-					res.write(JSON.stringify(result.rows));
+					console.log( "[deleted]" );
+					res.write("[deleted]");
 					res.end();
 				}
 			});
@@ -227,5 +227,5 @@ exports.getAll = getAll;
 exports.put = put;
 exports.post = post;
 exports.getOne = getOne;
-exports.delete = deleteOne;
+exports.deleteOne = deleteOne;
 exports.getByShoppingCart = getByShoppingCart;

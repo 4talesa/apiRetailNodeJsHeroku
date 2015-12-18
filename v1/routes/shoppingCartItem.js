@@ -10,7 +10,7 @@ module.exports = function(router){
 
 	router.get('/ShoppingCartItem/:id', shoppingCartItem.getOne);
 
-	router.delete('/ShoppingCartItem/:id', shoppingCartItem.delete);
+	router.delete('/ShoppingCartItem/:id', shoppingCartItem.deleteOne);
 	
 	router.get('/ShoppingCartItem/ShoppingCart/:id', shoppingCartItem.getByShoppingCart);
 	
