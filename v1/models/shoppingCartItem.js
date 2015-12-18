@@ -173,8 +173,7 @@ var deleteOne = function (req, res, next) {
 
 var put = function (req, res, next) {
 	
-	searchWithFilter('pi.id = $1',[req.params.id], function(result, err){					
-		console.log(result);
+	searchWithFilter('pi.id = $1',[req.body.id], function(result, err){
 		if (err){
 			insertItem(req.body, function(result, err){					
 				console.log(result);
